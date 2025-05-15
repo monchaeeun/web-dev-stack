@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이미지 및 멀티미디어</title>
+  </head>
+  <style></style>
+  <body>
+    <h2>이미지태그</h2>
+
+    <img
+      src="assets/bouquet-7948558_1280.jpg"
+      alt="사진을 불러올 수 없습니다."
+      width="300"
+      loading="lazy"
+    />
+    <!--loading = lazy:  사용자사 화면을 내릴 때 성능 최적화 -->
+    <img src="assets/roses-1246490_640.jpg" alt="" />
+    <h3>고정크기(픽셀단위)</h3>
+    <p>화면 크기와 관계 없이 고정된 크기</p>
+    <img src="assets/rose-3142529_640.jpg" alt="" width="200" height="120" />
+    <img
+      src="assets/forget-me-not-5143015_640.jpg"
+      alt=""
+      width="200"
+      height="120"
+    />
+    <h3>가변크기 (퍼센트 단위)</h3>
+    <p>부모태그의 너비에 따라 크기가 자동으로 조절</p>
+
+    <img src="assets/rose-3142529_640.jpg" alt="" width="49%" height="200" />
+    <img
+      src="assets/forget-me-not-5143015_640.jpg"
+      alt=""
+      width="49%"
+      height="200%"
+    />
+    <!-- 반응형 이미지 -->
+    <p>디바이스 너비에 따라 최적의 이미지를 자동 선택</p>
+    <!-- 이미지 뒤에 ? : 서버에 요청 -->
+    <img
+      src="http://images.unsplash.com/photo-1518770660439-4636190af475?w=1200"
+      alt=""
+      srcset="
+        http://images.unsplash.com/photo-1518770660439-4636190af475?w=480   480w,
+        http://images.unsplash.com/photo-1518770660439-4636190af475?w=800   800w,
+        http://images.unsplash.com/photo-1518770660439-4636190af475?w=1200 1200w
+      "
+      sizes="(max-width:600px) 480px, (max-width: 900px) 800px, 1200px"
+      width="100%"
+    />
+    <h2>오디오 태그</h2>
+    <!-- a - 다운로드 -->
+    <!-- controls 재생 바 표시-->
+    <!-- loop 반복 재생 -->
+    <audio src="assets/audio.mp3" controls loop>
+      <a href="assets/audio.mp3" download>오디오 다운로드</a>
+    </audio>
+    <h2>비디오 태그</h2>
+  </body>
+</html>
