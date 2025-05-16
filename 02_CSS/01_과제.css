@@ -1,3 +1,10 @@
 img {
   height: 400px;
 }
+ul > li:last-child {
+  background-color: blanchedalmond;
+}
+h1 {
+  text-decoration: line-through;
+  border: 3px dotted black;
+}
