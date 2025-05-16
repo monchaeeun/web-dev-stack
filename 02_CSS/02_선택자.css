@@ -1,0 +1,32 @@
+* {
+  background-color: aqua;
+}
+p {
+  background-color: blueviolet;
+}
+.class1 {
+  color: crimson;
+}
+.class2 {
+  font-size: 30px;
+}
+#id1 {
+  color: darkmagenta;
+}
+/* 그룸 선택자 */
+#select1,
+#select2 {
+  background-color: orangered;
+}
+/* 자손 선택 */
+#test1 ul li {
+  background-color: rgb(250, 104, 60);
+}
+/* 자식 선택 */
+#test1 > ul > li {
+  background-color: darkgreen;
+}
+
+#test1 h4 {
+  background-color: palevioletred;
+}
