@@ -1,6 +1,6 @@
-. {
+* {
   margin: auto;
-  padding: auto;
+  padding: 20px;
 }
 .head {
   width: 100%;
@@ -21,6 +21,20 @@ table {
 .section {
   display: inline-block;
   width: 20%;
-  height: 1000px;
+  height: 800px;
+  margin: auto;
   background-color: blue;
+}
+.main {
+  display: inline-block;
+  margin: auto;
+  height: 800px;
+  width: 65%;
+  background-color: chartreuse;
+}
+.footer {
+  display: inline-block;
+  height: 800px;
+  width: 1%;
+  background-color: rgb(162, 185, 138);
 }
