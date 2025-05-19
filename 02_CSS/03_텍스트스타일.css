@@ -1,0 +1,185 @@
+#ff1 {
+  /* font-family = 글씨체 */
+  font-family: "Courier New", Courier, monospace;
+}
+#ff2 {
+  font-family: "궁서", serif;
+}
+#ff3 {
+  font-family: "돋움", sans-serif;
+}
+#ff4 {
+  font-family: "Black Han Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+/* 폰트 굵기 변경 */
+#fw1 {
+  /* 굵게 */
+  font-weight: bold;
+}
+#fw2 {
+  /* 기존보다 굵게 */
+  font-weight: bolder;
+}
+#fw3 {
+  /* 기존보다 가늘게 */
+  font-weight: lighter;
+}
+#fw4 {
+  font-weight: 900;
+}
+/* 폰트 사이즈 */
+#fs1 {
+  font-size: 32px;
+}
+
+#fs2 {
+  /* 1em = 16px : 16*2 */
+  /* 부모가 30px이면 2배인 60px이 된다. */
+  font-size: 2em;
+}
+#fs3 {
+  /* 1rem = 16px : 16*2 */
+  /* 부모가 30px이어도 16px 고정이다. */
+  font-size: 2rem;
+}
+#fs4 {
+  /* 기본 크기 16px(부모 기준이 30px일 경우, 30px) * 2 = 32px */
+  font-size: 200%;
+}
+#fs5 {
+  font-style: italic;
+}
+#fs6 {
+  font-style: oblique;
+}
+#fv {
+  font-variant: small-caps;
+}
+#font1 {
+  font: italic small-caps bold 32px/2 "Black Han Sans";
+}
+#font2 {
+  font: 2rem "Black Han Sans";
+}
+/* color */
+#c-name {
+  /* 브라우저가 인식하는 기본 색상명(Web Safe Colors 라고도 함, 216가지) */
+  color: darkgreen;
+}
+#c-16 {
+  /* 16진수 */
+  color: #ff4852;
+}
+#c-rgb {
+  /*rgb : red, green, blue */
+  color: rgb(80, 100, 70);
+  /* rgba : rgb + 투명도 조정 */
+  color: rgb(0, 0, 0, 0.5);
+}
+#c-hsl {
+  /* hls :색상환(H,0~360) 채도(S,0~100%) 밝기(L,0~100%)투명도(A 0~1)*/
+  color: hsl(200, 50%, 50%, 0.2);
+  /* hlsa */
+}
+#td1 {
+  /* 밑 줄 */
+  text-decoration: underline;
+}
+#td2 {
+  /* 윗 선 */
+  text-decoration: overline;
+}
+#td3 {
+  /* 취소 선 */
+  text-decoration: line-through;
+}
+#td4 {
+  /* 링크 선 제거 */
+  text-decoration: none;
+  color: black;
+}
+/* 대소문자 변환 */
+#tt01 {
+  text-transform: uppercase;
+}
+#tt02 {
+  text-transform: lowercase;
+}
+#tt03 {
+  text-transform: capitalize;
+}
+/* 그림자 지정 */
+.shadow {
+  font-size: 50px;
+  font-weight: 900;
+}
+#ts1 {
+  color: tomato;
+  /* x축,y축, blur(흐림), 지정색 */
+  text-shadow: 5px 5px 1px yellow;
+}
+#ts2 {
+  color: white;
+  text-shadow: 0px 0px 10px purple;
+}
+#ts3 {
+  color: black;
+  text-shadow: 0px 0px 4px gray, 0px -5px 4px yellow, 0px -10px 8px orangered,
+    0px -22px 20px red;
+}
+/* white-space */
+#whs {
+  white-space: pre-wrap;
+}
+#ls {
+  /* 각 글자 하나하나에 10px이 들어감 */
+  letter-spacing: 10px;
+}
+#ws {
+  /* 단어 하나하나마다 10px이 들어감 */
+  word-spacing: 10px;
+}
+/* text-align */
+#ta1 {
+  text-align: left;
+}
+#ta2 {
+  text-align: right;
+}
+#ta3 {
+  text-align: center;
+}
+#ta4 {
+  text-align: justify;
+}
+/* text-indent */
+#ti {
+  text-indent: 10px;
+}
+/* line-height */
+#lh {
+  line-height: 3;
+}
+#to {
+  width: 500px;
+  /* 줄바꿈 없앰 */
+  white-space: nowrap;
+  /* 해당 영역만 보이게 처리 */
+  overflow: hidden;
+  /* ...처리 */
+  text-overflow: ellipsis;
+}
+ul.circle {
+  list-style: circle;
+}
+ul.square {
+  list-style: square;
+}
+ul.none {
+  list-style: none;
+  /* list는 기본적으로 padding 값이 있다.*/
+  padding-left: 0;
+  padding-right: 0;
+}

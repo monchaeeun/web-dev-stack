@@ -1,0 +1,98 @@
+/* width, height */
+/* px : 고정 크기 */
+/* % : 부모 기준 비율 */
+/* vw, vh : 뷰포트 너비, 높이 기준 비율 */
+* {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+#fixed-size {
+  width: 333.3333px;
+  height: 150px;
+  background-color: indigo;
+}
+#variable-size {
+  width: 80%;
+  height: 100vh;
+  background-color: deeppink;
+}
+.space {
+  background-color: lightgreen;
+  border: 1px solid black;
+  margin-bottom: 10px;
+}
+#padding1 {
+  padding: 20px;
+}
+#padding2 {
+  /* padding: 30px 20px 50px 40px; */
+  padding: 30px 20px 30px;
+}
+/* 상단 박스에 margin bottom: 20px, 하단 박스에 margin top : 5px일 경우,
+ 박스 간의 차이가 25x일 것 같지만, 가장 큰 값만 적용하여 20px의 차이가 나게 된다/ */
+#margin1 {
+  margin: 20px;
+}
+#margin2 {
+  margin: 5px 15px 10px 30px;
+}
+.collapse-box {
+  background-color: lightcoral;
+  padding: 10px;
+  /* 444 == #444444 16진수 줄임*/
+  border: 1px solid #444;
+}
+#box1 {
+  margin-bottom: 50px;
+}
+#box2 {
+  margin-top: 30px;
+}
+.center-box {
+  width: 200px;
+  height: 100px;
+  background-color: lightseagreen;
+  color: aliceblue;
+  text-align: center;
+  /* 글씨 가운데 정렬 - hright 값과 같으면 가운데로 감 */
+  line-height: 100px;
+  margin: auto;
+}
+.border {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  background-color: #eee;
+  /*옆으로 나열 */
+  display: inline-block;
+}
+#border1 {
+  /* solid : 실선 */
+  border: 3px solid gray;
+}
+#border2 {
+  /* 대쉬 선 */
+  /* 모서리 둥글게 */
+  border: 5px dashed gray;
+  border-radius: 20% 20% 20% 20%;
+}
+#border3 {
+  /* 점 선 */
+  border: 3px dotted gray;
+}
+.radius-box {
+  width: 120px;
+  height: 120px;
+  background-color: plum;
+  color: wheat;
+  text-align: center;
+  line-height: 120px;
+  margin-bottom: 10px;
+}
+/* 테두리를 둥글게 적용 */
+.radius1 {
+  border-radius: 30px 0 0 30px;
+}
+.radius2 {
+  border-radius: 50%;
+}

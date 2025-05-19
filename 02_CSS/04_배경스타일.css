@@ -1,0 +1,46 @@
+/* backgorund - color */
+#bc {
+  background-color: darkolivegreen;
+}
+/* background - clip */
+.div-test {
+  background: peachpuff;
+  padding: 30px;
+  border: 5px dashed orange;
+  margin-bottom: 20px;
+}
+#bc1 {
+  /* 내용물 기준까지만 선택 */
+  background-clip: content-box;
+}
+#bc2 {
+  /* border전까지만 선택 : content + padding*/
+  background-clip: padding-box;
+}
+#bc3 {
+  /* border까지 선택 : content + padding + border*/
+  background-clip: border-box;
+}
+img {
+  background-color: black;
+}
+#test {
+  width: 400px;
+  height: 300px;
+  border: 2px solid black;
+  background-image: url(assets/bg.jpg);
+  /*무조건 전체가 다 보이게 맞춤*/
+  background-size: contain;
+  /* 최대 크기로 맞춘다음 나머지는 자름*/
+  /* size : px, contain, cover */
+  background-size: cover;
+  background-repeat: repeat-x;
+  background-repeat: repeat-y;
+  background-repeat: no-repeat;
+  /* 배경 위치 이동 */
+  background-position: top right;
+  /*이미지만 고정하고 스크롤시 배경만 움직임 */
+  background-attachment: fixed;
+  /* 한꺼번에 쓸 때 */
+  /* 순서 color > image > position/size > repeat > attachment */
+}
