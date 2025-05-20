@@ -1,9 +1,11 @@
 * {
+  /* 전체 정리 */
   margin: 0;
   padding: 0;
 }
 
 .header {
+  /* 헤더 정렬 */
   position: fixed;
   width: 100%;
   background-color: rgb(255, 255, 255);
@@ -13,9 +15,11 @@
   justify-content: space-between;
 }
 #logo {
+  /* 로고 글자 */
   font-weight: 1000;
   font-size: 20px;
 }
+/* 헤더 정리 */
 .header a {
   line-height: 60px;
   text-decoration: none;
@@ -24,12 +28,14 @@
   font-weight: 30px;
   margin: 30px;
 }
+/* header 두껍게 */
 #heading1,
 #heading2,
 #heading3 {
   font-size: 30px;
   font-weight: 1000;
 }
+/* 색 정하기 */
 .main1 {
   background-color: black;
   color: white;
@@ -41,6 +47,7 @@
   background-color: palevioletred;
   color: darkslategray;
 }
+/* 메인 정렬 */
 .main1,
 .main2,
 .main3 {
@@ -51,6 +58,19 @@
   text-align: center;
   height: 700px;
 }
+/* lomen 꾸미기 */
 #lomen {
   margin: 35px;
+}
+#top {
+  background-color: black;
+  color: wheat;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 10px;
+  left: 85%;
+  text-align: center;
+  line-height: 100px;
 }
