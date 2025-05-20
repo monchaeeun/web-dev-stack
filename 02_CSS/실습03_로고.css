@@ -3,6 +3,10 @@
   margin: 0;
   padding: 0;
 }
+.all {
+  margin-left: 20px;
+  margin-right: 20px;
+}
 
 .header {
   /* 헤더 정렬 */
