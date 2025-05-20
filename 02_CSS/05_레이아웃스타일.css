@@ -2,10 +2,7 @@
 /* px : 고정 크기 */
 /* % : 부모 기준 비율 */
 /* vw, vh : 뷰포트 너비, 높이 기준 비율 */
-* {
-  margin-left: 20px;
-  margin-right: 20px;
-}
+
 #fixed-size {
   width: 333.3333px;
   height: 150px;
@@ -95,4 +92,130 @@
 }
 .radius2 {
   border-radius: 50%;
+}
+/* box-sizing */
+.box {
+  width: 300px;
+  height: 200px;
+  background-color: darkcyan;
+  margin: 10px;
+  border: 10px solid;
+  padding: 20px;
+  text-align: center;
+}
+.box-content {
+  box-sizing: content-box;
+}
+/* border까지 합했을 때 width: 300px;  height: 200px; */
+.box-border {
+  box-sizing: border-box;
+}
+/* display */
+.display {
+  background-color: lightseagreen;
+  padding: 10px;
+  margin: 5px;
+  text-align: center;
+  width: 150px;
+  height: 200px;
+}
+.display-inline {
+  /* item 만큼만 크기 변경 */
+  display: inline;
+}
+.display-block {
+  display: block;
+}
+.display-inlineblock {
+  display: inline-block;
+}
+/* float */
+.float {
+  width: 80px;
+  height: 80px;
+  margin: 5px;
+  background-color: aquamarine;
+  text-align: center;
+  line-height: 80px;
+  float: left;
+}
+#outer {
+  /* 부모가 relative일때 absolute는 부모 박스가 기준이다 */
+  position: relative;
+  width: 400px;
+  background-color: #f4f4f4;
+  height: 200px;
+  overflow: auto;
+}
+.position-box {
+  width: 100px;
+  height: 100px;
+}
+
+#relative {
+  /* 현재 위치에서 포지셔닝 시작 */
+  background-color: orange;
+  position: relative;
+  /* top, bottom, left, right */
+  top: 80px;
+  left: 50px;
+}
+#absolute {
+  /* 브라우저 맨 위에서부터 포지셔닝 시작 */
+  background-color: tomato;
+  position: absolute;
+}
+#fixed {
+  background-color: greenyellow;
+  position: fixed;
+  right: 20px;
+  top: 30px;
+}
+#sticky {
+  background-color: mediumturquoise;
+  position: sticky;
+  top: 0;
+}
+.visibility {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  background-color: lightgrey;
+  display: inline-block;
+}
+#vis2 {
+  visibility: visible;
+}
+#vis1 {
+  visibility: hidden;
+}
+#dis1 {
+  display: none;
+}
+#z-outer {
+  width: 200px;
+  height: 200px;
+  background-color: palevioletred;
+  position: relative;
+}
+.z-index {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+}
+#z-index1 {
+  background-color: #444;
+  top: 30px;
+  left: 30px;
+}
+#z-index2 {
+  background-color: chocolate;
+  top: 20px;
+  left: 20px;
+  z-index: 1;
+}
+#z-index3 {
+  background-color: darkcyan;
+  top: 10px;
+  left: 10px;
 }

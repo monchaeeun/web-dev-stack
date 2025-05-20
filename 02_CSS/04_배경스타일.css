@@ -21,9 +21,7 @@
   /* border까지 선택 : content + padding + border*/
   background-clip: border-box;
 }
-img {
-  background-color: black;
-}
+/* 그림 넣기 */
 #test {
   width: 400px;
   height: 300px;
