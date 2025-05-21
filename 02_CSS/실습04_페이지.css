@@ -1,0 +1,71 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.all {
+  display: flex;
+}
+/* 헤더 정렬 */
+.header {
+  position: fixed;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 300px;
+  height: 1200px;
+}
+#background {
+  width: 300px;
+  height: 1000px;
+}
+#logoText {
+  position: fixed;
+  left: 100px;
+}
+/* 로고 텍스트 */
+#logoText a {
+  text-decoration: underline;
+  color: white;
+  font-size: 3.5rem;
+}
+.menu {
+  position: fixed;
+  left: 45px;
+  bottom: 100px;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.menu li {
+  list-style: none;
+  margin: 30px;
+  padding: 0;
+}
+.menu li a {
+  text-decoration: underline;
+  color: white;
+}
+#mainLomen {
+  margin: 10px;
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.mainimages {
+}
+
+#foodImage {
+  width: 600px;
+  height: 400px;
+  flex-shrink: 2;
+}
+
+#text {
+  margin: 20px;
+}

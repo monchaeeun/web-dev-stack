@@ -1,0 +1,125 @@
+.box {
+  width: 150px;
+  height: 150px;
+  background-color: rebeccapurple;
+  color: whitesmoke;
+  line-height: 150px;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 15px;
+  margin: auto;
+}
+.transition {
+  background-color: black;
+}
+/* 마우스를 올렸을 때 */
+.transition:hover {
+  background-color: tomato;
+  /*transition : 무엇을 바꿀껀지 / 몇 초동안 동작하는 지 */
+  /* transition: all 2s; */
+  /* transition-property : 무엇을 바꿀껀지 */
+  transition-property: background-color, font-size, transform, border-radius;
+  transition-duration: 0.5s;
+  font-size: small;
+  /* 변화할 때 속도 맞춤 */
+  transition-timing-function: ease-in-out;
+  /* 1초 뒤에 동작 */
+  transform: scale(1.5) rotate(15deg);
+  /* transition: all 5s ease-in-out 1s; */
+  border-radius: 50%;
+}
+section {
+  display: flex;
+}
+/* 크기 변경 */
+.transform-scale {
+  background-color: teal;
+}
+.transform-scale:hover {
+  transform: scale(1.2);
+}
+/* 회전 */
+.transform-rotate {
+  background-color: orangered;
+}
+.transform-rotate:hover {
+  transform: rotate(45deg);
+}
+/* 이동 */
+.transform-translate {
+  background-color: royalblue;
+}
+.transform-translate:hover {
+  /* translate : 이동(x,y) */
+  transform: translate(10px, 20px);
+}
+/*skew :  기울이기(x, y) */
+.transform-skew {
+  background-color: darkorange;
+}
+.transform-skew:hover {
+  transform: skew(10deg, 10deg);
+}
+/* animation 만들기*/
+@keyframes bounce {
+  /* 디폴트 값 */
+  0% {
+    transform: translate(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: translate(25px, 50px);
+  }
+}
+
+@keyframes bounce2 {
+  0% {
+    transform: translate(0);
+  }
+  50% {
+    transform: translateY(-30px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.animation-once {
+  background-color: indianred;
+  /* animation : 애니메이션 명(미리 정의) 지속시간 속도곡선 횟수 */
+  animation: bounce 1s ease-in-out alternate;
+}
+.animation-alternate {
+  background-color: rebeccapurple;
+  /* 무제한, 왔다갔다(1-2-3-2-1 순으로 움직임) */
+  animation: bounce2 1s ease-in-out alternate;
+}
+.animation-reverse {
+  /* 3-2-1 순으로 움직임 */
+  background-color: olive;
+  animation: bounce 1s ease-in-out reverse;
+}
+.animation-paused {
+  background-color: brown;
+  animation: bounce2 2s linear infinite;
+}
+.animation-paused:hover {
+  /* 움직이다 마우스에 닿으면 멈춤 */
+  animation-play-state: paused;
+}
+/* 3d 효과 주기 */
+.perspective-container {
+  perspective: 600px;
+}
+.perspective-container .box {
+  background-color: chocolate;
+  transition-property: transform;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0.1s;
+}
+.perspective-container .box:hover {
+  transform: rotateX(90deg);
+}
