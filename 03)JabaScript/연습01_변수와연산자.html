@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>변수 & 연산자 연습문제</title>
+  </head>
+  <body>
+    <h1>변수 & 연산자 연습문제</h1>
+    <ol style="line-height: 2">
+      <li>
+        킬로그램(kg)을 파운드(lb)로 환산하여 console에 출력하시오. (1kg = 2.2lb)
+        <script>
+          const kg = 60;
+          // Q1: 여기에 코드를 작성하세요
+          lb = 2.2;
+          let result = kg * lb;
+          console.log(kg + "kg을 파운드로 변환하면 " + result + " 입니다.");
+        </script>
+      </li>
+
+      <li>
+        제곱미터(㎡)를 평(평수)으로 환산하여 출력하시오. (1㎡ = 0.3평)
+        <script>
+          const m2 = 99;
+          // Q2: 여기에 코드를 작성하세요
+          let num03 = 0.3;
+          result = m2 * num03;
+          console.log(m2 + "를 평으로 환산하면" + result + " 입니다.");
+        </script>
+      </li>
+
+      <li>
+        사다리꼴의 넓이를 구하시오. (윗변 + 밑변) / 2 * 높이
+        <script>
+          const upper = 10;
+          const lower = 14;
+          const height = 4;
+          // Q3: 여기에 코드를 작성하세요
+          result = ((upper + lower) / 2) * height;
+          console.log("사다리꼴의 넓이는 " + result + " 입니다.");
+        </script>
+      </li>
+
+      <li>
+        예금 12,000,000원을 연이율 4%로 정기예금했을 때 월 이자를 구하시오.
+        <script>
+          // Q4: 여기에 코드를 작성하세요
+
+          result = (12000000 * 0.04) / 12;
+          console.log("연이율 4%의 월 이자는" + result + " 입니다.");
+        </script>
+      </li>
+
+      <li>
+        올해가 2025년일 때, 나이(예: 55)를 기준으로 출생연도를 계산하시오.
+        <script>
+          // Q5: 여기에 코드를 작성하세요
+
+          let nowYear = 2025;
+          let age = 55;
+          let birth = nowYear - age - 1;
+          console.log("출생연도는 " + birth + " 입니다.");
+        </script>
+      </li>
+
+      <li>
+        아이스 아메리카노 한 잔 5,500원, 가진 돈이 15,000원일 때 최대 몇 잔,
+        잔돈은 얼마?
+        <script>
+          // Q6: 여기에 코드를 작성하세요
+          let coffee = 5500;
+          let money = 15000;
+          result = money / coffee;
+          console.log("잔은 " + parseInt(result) + "잔 입니다.");
+          result = money % coffee;
+          console.log("잔돈은 " + result + " 입니다.");
+        </script>
+      </li>
+
+      <li>
+        양꼬치 1인분 12,000원, 음료수 2,000원. 양꼬치 64인분, 음료 6개.
+        10인분마다 음료 1개 서비스. 총 지불 금액?
+        <script>
+          // Q7: 여기에 코드를 작성하세요
+          let yang = 12000;
+          let drink = 2000;
+          let yangNum = 64;
+          let drinkNum = 6;
+          let miDrink = yangNum / 10;
+          let notDrink = parseInt(miDrink) * drink;
+
+          result = yang * 64 + drink * 6 - notDrink;
+          console.log("총 지불 금액은 " + result + " 원 입니다.");
+        </script>
+      </li>
+
+      <li>
+        두 자리 정수(예: 73)의 각 자릿수를 더한 값을 구하시오. (7 + 3 = 10)
+        <script>
+          // Q8: 여기에 코드를 작성하세요
+          let number = 42;
+          let a = 0.1;
+          let re1 = number * a;
+          one1 = parseInt(re1);
+          console.log(one1);
+          //_________________
+          let b = 10;
+          let re2 = number % b;
+          console.log(re2);
+
+          result = one1 + re2;
+          console.log("각 자릿수를 더한 값은 " + result + "입니다");
+
+          // let ten = Number(String(number)[0]);
+          // let one = Number(String(number)[1]);
+          // result = ten + one;
+          // console.log("각 자릿수를 더한 값은 " + result + "입니다");
+        </script>
+      </li>
+
+      <li>
+        이름, 나이, 취미를 변수로 저장한 후 소개 문장을 console에 출력하시오.
+        <script>
+          // Q9: 여기에 코드를 작성하세요
+          let name = "문채은";
+          let myAge = 24;
+          let myHobby = "게임";
+          console.log(
+            "제이름은 " +
+              name +
+              "이고, 나이는" +
+              myAge +
+              "살이며, 취미는 " +
+              myHobby +
+              " 입니다."
+          );
+        </script>
+      </li>
+
+      <li>
+        문자열 "100"과 숫자 100의 비교 결과를 `==`와 `===`로 비교하고 결과를
+        console에 출력하시오.
+        <script>
+          // Q10: 여기에 코드를 작성하세요
+          let num100 = 100;
+          let str100 = "100";
+          console.log("== 의 비교 결과 : " + num100 == str100);
+          console.log("=== 의 비교 결과 : " + num100 === str100);
+        </script>
+      </li>
+    </ol>
+  </body>
+</html>

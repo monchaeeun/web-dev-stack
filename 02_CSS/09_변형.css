@@ -123,3 +123,6 @@ section {
 .perspective-container .box:hover {
   transform: rotateX(90deg);
 }
+:root {
+  --background-color: black;
+}

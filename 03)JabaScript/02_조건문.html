@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>조건문</title>
+  </head>
+  <body>
+    <h1>조건문</h1>
+    <h2>1. if / else</h2>
+    <script>
+      // if
+      let a = 10;
+      let b = 20;
+      if (a > b) {
+        console.log("a는 b보다 크다");
+      } else {
+        console.log("a는 b 보다 작다");
+      }
+      let age = 18;
+
+      if (age > 19) {
+        console.log("성인 입니다.");
+      } else {
+        console.log("미성년자 입니다.");
+      }
+      /*---------------------------------------------------------------*/
+      //삼항 연산자 : 조건 ? true: false;
+      age = 20;
+      const result = age > 19 ? "성인" : "미성년자";
+      console.log(result);
+    </script>
+
+    <h2>2. else if</h2>
+
+    <script>
+      /*if(){}
+        else if(){}
+        else{}*/
+
+      //else if
+      /*입력값을 받음5*/
+      //   age = prompt("나이를 입력해주세요");
+      if (age >= 20) {
+        console.log("성인");
+      } else if (age >= 14) {
+        console.log("청소년");
+      } else if (age >= 8) {
+        console.log("어린이");
+      } else {
+        console.log("유아");
+      }
+      //3항 연산자
+      let ageResult;
+      let result1 =
+        age >= 20
+          ? "성인"
+          : age >= 16
+          ? "청소년"
+          : age >= 8
+          ? "어린이"
+          : "유아";
+      console.log(result1);
+    </script>
+
+    <h2>switch</h2>
+    <script>
+      //switch(/*데이터 값*/)
+      //{
+      //    case /*조건 A(데이터 값) : */
+      //            /*조건 A가 true인 경우*/
+      //}
+
+      //   /*switch 문 실습*/
+      //   const number = prompt("숫자를 입력하세요");
+      //   result2 = number % 2;
+      //   switch (result2) {
+      //     case 0:
+      //       console.log("짝수");
+      //       break;
+      //     case 1:
+      //       console.log("홀수");
+      //       break;
+      //     default:
+      //       console.log("숫자가 아닙니다.");
+      //       break;
+      //   }
+      //   /*if 문 실습*/
+      //   if (result2 == 0) {
+      //     console.log("짝수");
+      //   } else if (result2 == 1) {
+      //     console.log("홀수");
+      //   } else {
+      //     console.log("숫자가 아닙니다.");
+      //   }
+      //
+    </script>
+
+    <h2>4.중첩 if</h2>
+    <!-- 조건문 안에 조건문 -->
+    <!-- <script>
+      조건문 안에 조건문
+      아이디가 user1, 비밀번호가 1234인 경우에 로그인 성공
+      비번틀리면 "비번 오류"
+      아이디가 틀리면 아이디 오류
+
+        let userID = prompt("아이디를 입력하세요.");
+        if (userID == "user1") {
+          let userPassword = prompt("비밀번호를 입력하세요.");
+          if (userPassword == "1234") {
+            console.log("로그인 성공");
+          } else {
+            console.log("비밀번호 오류");
+          }
+        } else if (userID == "") {
+          console.log("아이디를 입력하지 않았습니다.");
+        } else {
+          console.log("아이디 오류");
+        }
+    </script> -->
+
+    <h2>5. break가 없는 switch 문</h2>
+    <script>
+      const fruit = "banana";
+      switch (fruit) {
+        case "apple":
+          console.log("사과");
+          break;
+        case "orange":
+          console.log("오렌지");
+          break;
+        case "banana":
+          console.log("바나나");
+          break;
+        case "kiwi":
+          console.log("키위");
+          break;
+        default:
+          console.log("이게 머임");
+          break;
+      }
+    </script>
+  </body>
+</html>

@@ -31,9 +31,9 @@
   font-size: 3.5rem;
 }
 .menu {
-display: flex;
-flex-direction: column;
-gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   position: fixed;
   left: 80px;
   top: 700px;
@@ -66,22 +66,20 @@ gap: 10px;
   text-align: center;
   margin: 20px;
 }
-#foodImage 
-{
+#foodImage {
   display: flex;
   width: 1000px;
   flex-shrink: 5;
   max-width: 100%;
 }
 /* 변수 */
- :root {
+:root {
   --main-width: 250px;
   --main-color: rgba(0, 0, 0, 0.5);
-
 }
 /* .main {
   padding-left: var(--main-width);
-} */ */
+} */
 
 /* 기준 값보다 추가하고 싶을 때 */
 /*.main {
