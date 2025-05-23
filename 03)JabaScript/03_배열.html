@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>배열</title>
+  </head>
+  <body>
+    <h1>배열</h1>
+    <p>하나의 변수에 여러 값을 저장할 수 있는 자료형</p>
+
+    <script>
+      // 배열 Type - Object
+      const arr = [1, 2, 3, 4, 5];
+      console.log(arr);
+      //배열의 위치-> 맨앞 출력
+      console.log(arr[0]);
+      //배열인지 확인
+      console.log("배열인지 확인 : ", Array.isArray(arr));
+      //해당 배열의 길이 ->아이템 개수 세기
+      console.log(arr.length);
+      //arr에서 5라는 숫자
+      console.log(arr[4]);
+      //배열의 마지막 값 가져오기
+      console.log(arr[arr.length - 1]);
+    </script>
+
+    <h2>1. 배열의 요소 추가</h2>
+    <script>
+      //배열 맨 뒤에 집어넣기
+      arr.push(6);
+      //배열 맨 앞에 집어녈기
+      arr.unshift(0);
+      //3번째 뒤에 넣기 :(몇번째 뒤에 넣는지, 삭제할 개수, 추가할 값1,추가할 값2 ....);
+      arr.splice(3, 0, 9, 2);
+      console.log(arr);
+    </script>
+    <h2>2. 배열 요소 삭제</h2>
+    <script>
+      //맨 뒤의 값 삭제
+      arr.pop();
+      console.log(arr);
+      //맨 앞의 값  삭제
+      arr.shift();
+      console.log(arr);
+      //인덱스 2에 있는 값 삭제
+      arr.splice(2, 1);
+      console.log(arr);
+    </script>
+
+    <h2>3. 배열 수정</h2>
+    <script>
+      // splice - 인덱스 1의 값을 100으로 수정
+      //이미지 업로드, 수정하는데에 사용
+      arr.splice(1, 1, 100);
+      console.log(arr);
+
+      // 1.인덱스 2 위치에 999추가
+      arr.splice(2, 0, 999);
+      console.log(arr);
+      //2. 인덱스 4값을 삭제
+      arr.splice(4, 1);
+      console.log(arr);
+      //3.인덱스 3값을 777로 수정
+      arr.splice(3, 1, 777);
+      console.log(arr);
+
+      //4.값이 777인 걸 3으로 수정 : 특정 값을 찾아서 수정
+      console.log(arr.indexOf(777));
+      arr.splice(arr.indexOf(777), 1, 3);
+      console.log(arr);
+    </script>
+    <h2>4. 배열 정렬</h2>
+
+    <script>
+      // 정렬
+
+      //문자 정렬
+      arr.sort();
+      console.log(arr);
+      //오름차순 정렬(함수 사용)
+      arr.sort((a, b) => a - b);
+      console.log(arr);
+      //내림차순 정렬
+      arr.sort((a, b) => b - a);
+      console.log(arr);
+      //반대로 정렬
+      arr.reverse();
+      console.log(arr);
+    </script>
+
+    <h2>5. 문자열 &lt-&gt 배열</h2>
+    <script>
+      const str = "Hello, JaveScript!";
+      //split(구분자) : 문자 -> 배열
+      const strToArr = str.split("");
+      console.log(strToArr);
+      //join(구분자) : 배열 -> 문자
+      const arrToStr = strToArr.join(" ");
+      console.log(arrToStr);
+    </script>
+
+    <h2>6. 빈 배열에서 값 추가</h2>
+    <script>
+      const arr2 = []; //베열은 빈 배열에서 시작
+      arr2.push(1);
+      arr2[1] = 2;
+      arr2[0] = 3;
+      console.log(arr2);
+    </script>
+
+    <h2>7. slice (자르기) : 원본 배열 유지</h2>
+    <script>
+      const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+      //index를 시작 인덱스에서 끝 인덱스까지 가져옴(시작 포함, 끝 미포함)
+      const sliced = numbers.slice(2, 5);
+      console.log(sliced);
+    </script>
+
+    <h2>8. 구조 분해 할당</h2>
+    <script>
+      //프로그래밍 언어에서 여러 값을 동시에 여러 변수에 할당하는 기술
+      const friends = ["짱구", "유리", "철수", "훈이", "맹구"];
+      //철수 이름 가져오기
+      let chuel = friends.indexOf("철수");
+      console.log(friends[chuel]);
+
+      const [f1, f2, f3, f4, f5] = friends;
+      console.log(f3);
+    </script>
+
+    <h2>9. Set : 중복 제거</h2>
+    <script>
+      const arr3 = [1, 2, 2, 3, 3, 4, 4, 4, 5];
+      const unique = new Set(arr3);
+      console.log(unique);
+      // . . . => 전개(Spread) 연산자 - 하나하나 값을 뽑는다.
+      const uniqueArr = [...unique]; // [1, 2, 3, 4, 5]
+      console.log(typeof unique);
+      const arr4 = [6, 7, 8, 9];
+      console.log(typeof uniqueArr);
+
+      // 두 배열 합치기 : [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+      const result = [...uniqueArr, ...arr4];
+      console.log(result);
+
+      const a = [1, 2, 3, 4, 5];
+      const b = [6, 7, 8, 9];
+      const c = [...a, ...b];
+
+      console.log(c);
+      //
+    </script>
+  </body>
+</html>

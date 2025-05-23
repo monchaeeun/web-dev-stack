@@ -6,6 +6,13 @@
     <title>변수 & 연산자 연습문제</title>
   </head>
   <body>
+    <!-- 변수 명명 규칙
+      1)문자,숫자,기호는 $,_만 사용
+      2)첫글자에는 숫자 금지
+      3)예약어(const, if,switch 등) 금지
+      4)표기법대로 사용 : camelCase(낙타표기법) ex: userId
+      5)상수(const로 표시한 것 x)는 대문자 + snake_case(언더바 표기법)
+      -->
     <h1>변수 & 연산자 연습문제</h1>
     <ol style="line-height: 2">
       <li>
@@ -46,8 +53,9 @@
         예금 12,000,000원을 연이율 4%로 정기예금했을 때 월 이자를 구하시오.
         <script>
           // Q4: 여기에 코드를 작성하세요
-
-          result = (12000000 * 0.04) / 12;
+          const deposit = 12000000;
+          const rate = 0.04;
+          result = (deposit * rate) / 12;
           console.log("연이율 4%의 월 이자는" + result + " 입니다.");
         </script>
       </li>
@@ -59,7 +67,7 @@
 
           let nowYear = 2025;
           let age = 55;
-          let birth = nowYear - age - 1;
+          let birth = nowYear - age + 1;
           console.log("출생연도는 " + birth + " 입니다.");
         </script>
       </li>
@@ -87,10 +95,11 @@
           let drink = 2000;
           let yangNum = 64;
           let drinkNum = 6;
-          let miDrink = yangNum / 10;
-          let notDrink = parseInt(miDrink) * drink;
 
-          result = yang * 64 + drink * 6 - notDrink;
+          let srDrink = yangNum / 10;
+          let notDrink = parseInt(srDrink) * drink;
+
+          result = yang * yangNum + drink * drinkNum - notDrink;
           console.log("총 지불 금액은 " + result + " 원 입니다.");
         </script>
       </li>
@@ -129,7 +138,7 @@
           console.log(
             "제이름은 " +
               name +
-              "이고, 나이는" +
+              "이고, 나이는 " +
               myAge +
               "살이며, 취미는 " +
               myHobby +
