@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>함수</title>
+  </head>
+  <body>
+    <h1>함수</h1>
+    <script>
+      // 매개 변수(parameter) :입력값을 받는 함수
+      // 1. 매개변수x, 리턴 값x
+
+      function sayHello() {
+        console.log("안녕하시요!◐ㅁ◐");
+      }
+      //함수 호출
+      sayHello();
+
+      //2.매개변수o, 리턴 값 x
+      //호출할 때 매개변수(parameter)를 안넣으면 이 값이 들어감
+      function greet(name = "성모") {
+        console.log(name + "입니다@@!");
+      }
+      //함수 호출
+      greet("채은");
+      //3.매개 변수x, 리턴값 o
+      function getNumber() {
+        return 1000;
+      }
+      console.log(getNumber()); //자체가 1000;
+
+      //4.매개 변수o, 리턴값 o
+      //더하기 함수
+      function add(a, b) {
+        return a + b;
+      }
+      //함수 호출
+      console.log(add(10, 5));
+    </script>
+
+    <h2>1. 변수의 유효 볌위 Scope</h2>
+    <script>
+      const num1 = 100; //전역 변수 : 모든 지역에서 쓸 수 있음
+
+      function sample1() {
+        const num1 = 200; //sample 함수 내부 지역 변수 : sample 함수 안에서만 쓸 수 있음
+        console.log(`sample1 내부 : ${num1}`);
+      }
+      console.log("sample1 외부 : " + num1);
+      sample1();
+    </script>
+
+    <h2>2. 선언적 vs 익명 vs 화살표 함수</h2>
+    <script>
+      // 선언적 함수(Funtion Declaration)
+      //-호이스팅(함수 정의, 호출 순서 상관 없음)
+      //-> 코드 해석 시점에 메모리에 등록, 선언 이전에 호출 가능
+      function multiply(a, b) {
+        return a + b;
+      }
+      console.log("선언적 함수 : " + multiply(2, 3));
+      //익명 함수(Funtion Expression)
+      //   함수 이름이 없음, 변수에 넣음
+      const subtract = function (a, b) {
+        return a + b;
+      };
+      console.log("익명 함수 : " + subtract(10, 5));
+      //화살표 함수(Arrow Funtion)
+      //- funtion 대신 => 사용
+
+      //   const divide = (a, b) => {
+      //     return a / b;
+      //   };
+
+      const divide = (a, b) => a / b;
+      console.log("화살표 함수 : " + divide(10, 2));
+    </script>
+    <!-- 함수 안의 함수  -->
+    <h2>3. 콜백 함수</h2>
+    <script>
+      function callFunc(callBack) {
+        // 다른 함수의 인자로 전달되는 함수
+        console.log("함수 호출 전");
+        callBack();
+        console.log("함수 호출 후");
+      }
+
+      function call() {
+        console.log("안녕하시요~콜백함수 호출@");
+      }
+
+      callFunc(call);
+    </script>
+
+    <h2>4. 배열 관련 콜백 함수들</h2>
+    <script>
+      const numbers = [1, 2, 3, 4, 5];
+      //1. 값을 하나씩 출력
+      for (let i = 0; i < numbers.length; i++) {
+        console.log(numbers[i]);
+      }
+      console.log("---------for Each----------");
+      //   =>forEach((값,인덱스, 배열) => {})
+      numbers.forEach((value, index, arry) => {
+        console.log(value);
+      });
+      console.log("------------2-----------");
+      //2. 배열의 값을 각각 2배로 만들어서 출력해보기
+      for (let i = 0; i < numbers.length; i++) {
+        let a = numbers[i] * 2;
+        console.log(a);
+      }
+      console.log("---------for in----------");
+      const doubled = [];
+      for (const index in numbers) {
+        doubled.push(numbers[index] * 2);
+      }
+      console.log(...doubled);
+
+      for (const index in numbers) {
+        console.log(numbers[index] * 2);
+      }
+      console.log("--------- map ----------");
+      //=>map((값 , 인덱스, 배열)=> {})
+      //각 요소를 가공하여 새로운 배열 반환
+      const doubleMap = numbers.map((value, index, arry) => {
+        return value * 2;
+      });
+      console.log(...doubleMap);
+      console.log("-----------3------------");
+      //3.배열의 짝수만 출력하기
+      for (let i = 0; i < numbers.length; i++) {
+        if (numbers[i] % 2 == 0) {
+          console.log(numbers[i]);
+        }
+      }
+      console.log("---------for of----------");
+      for (const value of numbers) {
+        if (value % 2 == 0) console.log(value);
+      }
+      console.log("---------filter----------");
+      //=> filter(()=>{}) : 조건에 만족하는 요소만 추출해서
+      //새로운 배열 반환
+      const filterNum = numbers.filter((value, index, arry) => {
+        //리턴한 값들이 true인 것만 모아서
+        return value % 2 == 0;
+      });
+      console.log(typeof filterNum);
+      console.log(...filterNum);
+
+      console.log("---------for----------");
+      //4.배열의 총합 구하기
+      let plusNumbers = 0;
+      for (let i = 0; i < numbers.length; i++) {
+        plusNumbers += numbers[i];
+      }
+      console.log(plusNumbers);
+      console.log("---------reduce----------");
+      //   => reduce((누적된 값, 현재값, 인덱스, 배열)=>{}, 초기 값)
+      const sumReduce = numbers.reduce((acc, cur, index, arry) => {
+        return acc + cur;
+      }, 0);
+      console.log(sumReduce);
+      console.log(typeof sumReduce);
+      console.log("-----------------------");
+      //함수에 넣어보기(개인)
+      function printNum(...arry) {
+        console.log(...arry);
+        for (let i = 0; i < arry.length; i++) {
+          console.log(arry[i]);
+        }
+      }
+
+      printNum(...numbers);
+    </script>
+  </body>
+</html>

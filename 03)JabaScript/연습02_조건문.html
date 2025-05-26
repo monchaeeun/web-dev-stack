@@ -13,8 +13,10 @@
         <script>
           // Q1: 여기에 코드를 작성하세요
           let id = "admin";
-          if ((id = "admin")) {
+          if (id == "admin") {
             console.log("관리자 입니다.");
+          } else {
+            console.log("관리자가 아닙니다.");
           }
         </script>
       </li>
@@ -64,15 +66,42 @@
         겨울)
         <script>
           // Q5: 여기에 코드를 작성하세요
-          let month = prompt("월을 입력 받습니다.");
-          if (month == "1" || month == "2" || month == "12") {
+          let month = Number(prompt("월을 입력 받습니다."));
+          if (month == 1 || month == 2 || month == 12) {
             console.log("겨울");
-          } else if (month == "3" || month == "4" || month == "5") {
+          } else if (month == 3 || month == 4 || month == 5) {
             console.log("봄");
-          } else if (month == "6" || month == "7" || month == "8") {
+          } else if (month == 6 || month == 7 || month == 8) {
             console.log("여름");
-          } else if (month == "9" || month == "10" || month == "11") {
+          } else if (month == 9 || month == 10 || month == 11) {
             console.log("가을");
+          }
+
+          switch (month) {
+            case 1:
+            case 2:
+              console.log("겨울");
+              break;
+            case 3:
+            case 4:
+            case 5:
+              console.log("봄");
+              break;
+            case 6:
+            case 7:
+            case 8:
+              console.log("여름");
+              break;
+            case 9:
+            case 10:
+            case 11:
+              console.log("가을");
+              break;
+            case 12:
+              console.log("겨울");
+              break;
+            default:
+              console.log("입력 값이 잘못되었습니다.");
           }
         </script>
       </li>
@@ -84,16 +113,16 @@
           // Q6: 여기에 코드를 작성하세요
           let score = 20;
           switch (score) {
-            case score > 90:
+            case score >= 90:
               console.log("A");
               break;
-            case score > 80:
+            case score >= 80:
               console.log("B");
               break;
-            case score > 70:
+            case score >= 70:
               console.log("C");
               break;
-            case score > 60:
+            case score >= 60:
               console.log("D");
               break;
             default:
@@ -107,32 +136,37 @@
         숫자를 입력받아 요일을 출력하시오. (1: 월요일 ~ 7: 일요일)
         <script>
           // Q7: 여기에 코드를 작성하세요
-          let monthNum = prompt("숫자를 입력하세요.");
+          let monthNum = Number(prompt("숫자를 입력하세요."));
           switch (monthNum) {
-            case "1":
+            case 1:
               console.log("월요일");
               break;
-            case "2":
+            case 2:
               console.log("화요일");
               break;
-            case "3":
+            case 3:
               console.log("수요일");
               break;
-            case "4":
+            case 4:
               console.log("목요일");
               break;
-            case "5":
+            case 5:
               console.log("금요일");
               break;
-            case "6":
+            case 6:
               console.log("토요일");
               break;
-            case "7":
+            case 7:
               console.log("일요일");
               break;
             default:
-              console.log("잘못 입력하셨습니다");
+              //창 표시
+              alert("잘못 입력하셨습니다");
+              break;
+            // 배열
           }
+          const days = ["월", "화", "수", "목", "금", "토", "일"];
+          console.log(days[monthNum - 1] + "요일");
         </script>
       </li>
 
@@ -140,21 +174,21 @@
         두 수와 연산자를 입력받아 사칙연산 결과를 출력하시오.
         <script>
           // Q8: 여기에 코드를 작성하세요
-          let isNum = 1;
+
           let result;
-          let numA = prompt("숫자A 를 입력하세요.");
-          if (Number(numA) != NaN) {
-            let numB = prompt("숫자B 를 입력하세요.");
-            if (Number(numB) != NaN) {
+          let numA = Number(prompt("숫자A 를 입력하세요."));
+          if (numA != NaN) {
+            let numB = Number(prompt("숫자B 를 입력하세요."));
+            if (numB != NaN) {
               let nums = prompt("두 수에 사용할 연산자를 입력하세요.");
               if (nums == "+") {
-                result = Number(numA) + Number(numB);
+                result = numA + numB;
               } else if (nums == "-") {
-                result = Number(numA) - Number(numB);
+                result = numA - numB;
               } else if (nums == "*") {
-                result = Number(numA) * Number(numB);
+                result = numA * numB;
               } else if (nums == "/") {
-                result = Number(numA) / Number(numB);
+                result = numA / numB;
               } else {
                 console.log("연산자를 잘못 입력했습니다.");
               }
