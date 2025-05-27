@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: coral;
+}
+.all {
+  display: flex;
+  height: 800px;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+}
+#dateText,
+#english,
+#footer {
+  font-size: 2rem;
+}
+#dateText {
+  margin-top: 100px;
+  font-weight: bold;
+}
+#timeText {
+  font-size: 3rem;
+  font-weight: bold;
+}
+#limitTime {
+  font-size: 2rem;
+  font-weight: bold;
+}
