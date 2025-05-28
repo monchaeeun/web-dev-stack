@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이벤트</title>
+    <script src="09_이벤트.js"></script>
+    <style>
+      .box {
+        width: 200px;
+        height: 100px;
+        background-color: olive;
+        color: aliceblue;
+        line-height: 100px;
+        text-align: center;
+        margin: 10px;
+      }
+      .sec1 {
+        display: flex;
+      }
+      .moveBox {
+        width: 50px;
+        height: 50px;
+        background-color: teal;
+        position: relative;
+        top: 0;
+        left: 0;
+        /* top: 10px; */
+        /* left: 30px; */
+        /* right: 50px; */
+        /* bottom: 30px; */
+      }
+      body {
+        height: 2000px;
+      }
+      #scroll {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: yellowgreen;
+        /* width: 100%; */
+        height: 5px;
+      }
+      .container {
+        background-color: olive;
+        display: flex;
+      }
+      .container img {
+        width: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>이벤트</h1>
+    <h2>1.클릭 이벤트</h2>
+    <section class="sec1">
+      <div id="click" class="box">click!</div>
+      <div id="double" class="box">Double Click!</div>
+      <div id="right" class="box">Right Click!</div>
+      <div id="hover" class="box">Hover!</div>
+    </section>
+    <h2>2. 폼 이벤트</h2>
+    <section class="sec2">
+      <input type="text" id="input" />
+      <p id="inputResult"></p>
+    </section>
+    <!-- select 태그 -->
+    <section>
+      <select name="" id="select">
+        <option value="사과">사과</option>
+        <option value="블루베리">블루베리</option>
+      </select>
+      <p id="selectResult"></p>
+    </section>
+    <!-- 로그인 회원가입 form 태그-->
+    <form action="" method="post" id="form">
+      <input type="text" name="userName" id="name" />
+      <button type="submit">제출</button>
+    </form>
+    <h2>3. 키보드 이벤트</h2>
+    <input
+      type="text"
+      name=""
+      id="keyboard"
+      placeholder="여기에 키보드로 입력해보세요."
+    />
+    <p id="keyResult"></p>
+    <div class="">
+      <div class="moveBox"></div>
+    </div>
+
+    <h2>4. 스크롤 이벤트</h2>
+    <div id="wheel">휠을 움직여보세요!</div>
+    <div id="scroll"></div>
+
+    <h2>5. 이벤트 위임</h2>
+    <div class="container">
+      <img src="assets/spy1.jpg" alt="" />
+      <img src="assets/spy2.jpg" alt="" />
+      <img src="assets/spy3.jpg" alt="" />
+    </div>
+  </body>
+</html>
