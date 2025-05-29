@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.all {
+  width: 100%;
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.header {
+  margin-top: 150px;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+  font-weight: bold;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+.mainBox {
+  width: 80%;
+  border: 10px;
+  border: 1px solid lightgray;
+  display: flex;
+  flex-direction: column;
+}
+input {
+  margin: 10px 10px;
+  height: 30px;
+  padding: 10px;
+  border: 1px solid lightgray;
+  font-weight: bold;
+}
+p {
+  margin: 10px 20px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+.allBtn {
+  width: 80%+10px;
+  height: 50px;
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+#join {
+  margin: 10px;
+  width: 70px;
+  height: 30px;
+  border: none;
+  background-color: gray;
+  color: white;
+  border-radius: 6px;
+}
+#cancel {
+  margin: 10px;
+  width: 50px;
+  height: 30px;
+  border: none;
+  background-color: teal;
+  color: white;
+  border-radius: 6px;
+}

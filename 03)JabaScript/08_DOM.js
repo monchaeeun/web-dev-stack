@@ -49,7 +49,7 @@ function btn6() {
 }
 //속성 조작하기
 function btn7() {
-  const testId = document.getElementById("testId");
+  const testId = document.querySelector("#testId");
   //속성 추가(속성 명, 속성 값)
   testId.setAttribute("data-test", "테스트");
   //속성 값 가져오기
@@ -71,7 +71,6 @@ function btn9() {
 }
 function btn10() {
   //black class 제거
-
   div02.classList.remove("black");
 }
 function btn11() {
