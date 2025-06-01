@@ -8,6 +8,21 @@ window.addEventListener("DOMContentLoaded", () => {
   //클릭
   let idCheck = false;
   let pwCheck = false;
+
+  //코드 중복 함수 기능
+
+  const show = () => {
+    document.mainBox.innerHTML = `<div>${getName}님 환영합니다!<div>`;
+    mainBox.innerHTML = `<button id="cancel">로그아웃</button>`;
+    /*
+    const cancel = document.querySelector("#cancel");
+      cancel.addEventListener("click",() =>{
+      localStorage.removeItem("name");
+      location.reload();      
+    })
+    */
+  };
+
   //이름 입력 란
   userId.addEventListener("input", (e) => {
     if (userId.value !== "") {
@@ -35,8 +50,11 @@ window.addEventListener("DOMContentLoaded", () => {
   join.addEventListener("click", () => {
     //00님 환영합니다!
     if (idCheck && pwCheck) {
-      sessionStorage.setItem("name", userId.value);
-      const getName = sessionStorage.getItem("name");
+      localStorage.setItem("name", userId.value);
+      const getName = localStorage.getItem("name");
+
+      localStorage.setItem("password", password.value);
+      const getPw = localStorage.getItem("name");
       console.log(userId.value);
       header.innerHTML = `${getName}님 환영합니다!`;
       mainBox.innerHTML = `<button id="cancel">로그아웃</button>`;
@@ -45,17 +63,26 @@ window.addEventListener("DOMContentLoaded", () => {
       const cancel = document.querySelector("#cancel");
 
       cancel.addEventListener("click", () => {
-        header.innerHTML = "로그인";
-        mainBox.innerHTML = `<input type="text" id="userId" placeholder="이름을 입력해주세요" />
-        <input
-          type="text"
-          id="password"
-          placeholder="비밀번호를 입력해주세요"
-        />
-        <div class="allBtn">
-          <button id="join" type="submit">로그인</button>
-        </div>`;
+        localStorage.removeItem("name");
+        location.reload();
       });
     }
+    //방법 2
+
+    /*아이디 입력, 비번 입력 값들 로그인 처리
+    로그인을 성공하고 이름을 저장
+    .addEventListener("click", () => {
+      //둘 증 하나가 값이 없을 때
+      if(userId.value === && password.value === "")
+      {
+      alert("이름과 비밀번호를 입력해주세요");
+       return; //아무것도 없이 저장 방지
+      }
+      localStorage.setItem("name", userId.value);
+       show(userId.value);
+    })
+    
+    
+    */
   });
 });

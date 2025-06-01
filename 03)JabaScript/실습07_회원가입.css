@@ -7,7 +7,7 @@
   height: 800px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 .header {
@@ -19,8 +19,7 @@
     "Lucida Sans", Arial, sans-serif;
 }
 .mainBox {
-  width: 80%;
-  border: 10px;
+  width: 400px;
   border: 1px solid lightgray;
   display: flex;
   flex-direction: column;
@@ -38,13 +37,13 @@ p {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 .allBtn {
-  width: 80%+10px;
+  width: 400px;
   height: 50px;
   margin: 10px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 #join {
   margin: 10px;
@@ -58,8 +57,8 @@ p {
 }
 #cancel {
   margin: 10px;
-  width: 100%px;
-  height: 30px;
+  width: 95%;
+  height: 40px;
   border: none;
   background-color: teal;
   color: white;
