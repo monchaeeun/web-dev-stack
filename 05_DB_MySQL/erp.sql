@@ -44,10 +44,103 @@
 */
 drop table user_info;
 create table user_Info(
-	user_code int AUTO_INCREMENT,
-	user_Name varchar(6) default '채은' "이름",
-    user_Age varchar(10) default '24' "나이",
-    user_Id varchar(20) default 'user_123' "아이디",
-    user_Pw varchar(20) default 'qwer1234' "비밀번호"
+	user_no int primary key auto_increment,
+	user_Id varchar(50) unique not null,
+    user_Pw varchar(300) not null,
+    email varchar(100) unique,
+	user_Name varchar(50) not null,
+    phone varchar(50) unique,
+    addr varchar(200),
+    gender varchar(10) check(gender in ('남','여')),
+    birth_date date,
+    hire_date date default (current_date), /*현재 날짜 저장*/
+    quit_date date,
+    dept_no int,
+    grade_no int
 );
+create table department(
+dept_no int primary key auto_increment,
+dept_name varchar(100) not null
+    );
+create table grade(
+grade_no int primary key auto_increment,
+grade_name varchar(100) not null
+    );
 select * from user_info;
+/*dept_no, grade_no*/
+alter table user_info add 
+foreign key(dept_no) references department(dept_no);
+alter table user_info add 
+foreign key(grade_no) references grade(grade_no);  
+
+/*
+
+	프로젝트 관리 : 테이블 몇개든 상관없이 짜보시고 foreign key까지 걸어보는 것까지!
+    테이블 필요한 컬럼 짜기 힘드시다면 어떤 기능이 있어야되는지 정도로 제출해도 괜찮아요@!
+    
+*/
+DROP TABLE USER_INFO_02;
+CREATE TABLE USER_INFO_02(
+	USER_NO INT primary KEY auto_increment,
+	USER_ID VARCHAR(50) unique NOT NULL,
+    USER_PW VARCHAR(50) NOT NULL,
+    USER_NAME VARCHAR(50) NOT NULL,
+    USER_GENDER VARCHAR(10) check(USER_GENDER IN('남','여')),
+    DEPT_NO INT,
+    ADDLESS_NO INT,
+    PROJECT_NO INT,
+    SCHEDULE_NO INT,
+    CUSTOMER_NO INT
+    
+    
+);
+DROP TABLE USER_DEPARTMENT;
+CREATE TABLE USER_DEPARTMENT(
+	DEPT_NO INT primary key auto_increment,
+    DEPT_TITLE VARCHAR(50)
+    
+);
+DROP TABLE USER_ADDRESS;
+CREATE TABLE USER_ADDRESS(
+	ADDRESS_NO INT primary key auto_increment,
+    ADDRESS_LOCAL VARCHAR(30)
+    
+);
+CREATE TABLE USER_PROJECT(
+	PROJECT_NO INT primary key auto_increment,
+    PROJECT_TITLE VARCHAR(100),
+    PROJECT_NAME VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE USER_SCHEDULE(
+	SCHEDULE_NO INT primary key auto_increment,
+    SCHEDULE_START DATE,
+    SCHEDULE_LIMIT DATE
+);
+CREATE TABLE USER_CUSTOMER(
+	CUSTOMER_NO INT primary key auto_increment,
+    CUSTOMER_NAME VARCHAR(100) NOT NULL,
+    CUSTOMER_DATE DATE NOT NULL,
+    CUSTOMER_GENDER VARCHAR(10) check(CUSTOMER_GENDER IN('남','여')),
+    CUSTOMER_ID VARCHAR(200) UNIQUE NOT NULL,
+    CUSTOMAR_PW VARCHAR(200) UNIQUE NOT NULL
+);
+
+
+
+SELECT * FROM USER_INFO_02;
+/*dept_no, grade_no*/
+alter table USER_INFO_02 add 
+foreign key(DEPT_NO) references USER_DEPARTMENT(DEPT_NO);
+
+alter table USER_INFO_02 add 
+foreign key(ADDRESS_NO) references USER_ADDRESS(ADDRESS_no);  
+
+alter table USER_INFO_02 add 
+foreign key(SCHEDULE_NO) references USER_SCHEDULE(SCHEDULE_no);  
+
+alter table USER_INFO_02 add 
+foreign key(PROJECT_NO) references USER_PROJECT(PROJECT_NO);  
+
+alter table USER_INFO_02 add 
+foreign key(CUSTOMER_NO) references USER_CUSTOMER(CUSTOMER_NO);  
