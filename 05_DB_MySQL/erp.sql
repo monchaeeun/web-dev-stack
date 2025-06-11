@@ -42,6 +42,81 @@
   
   ->PRIMARY KEY --> AUTO INCREMENT 추가
 */
+
+/*
+
+-- 	프로젝트 관리 : 테이블 몇개든 상관없이 짜보시고 foreign key까지 걸어보는 것까지!
+--     테이블 필요한 컬럼 짜기 힘드시다면 어떤 기능이 있어야되는지 정도로 제출해도 괜찮아요@!
+--     
+-- */
+-- DROP TABLE USER_INFO_02;
+-- CREATE TABLE USER_INFO_02(
+-- 	USER_NO INT primary KEY auto_increment,
+-- 	USER_ID VARCHAR(50) unique NOT NULL,
+--     USER_PW VARCHAR(50) NOT NULL,
+--     USER_NAME VARCHAR(50) NOT NULL,
+--     USER_GENDER VARCHAR(10) check(USER_GENDER IN('남','여')),
+--     DEPT_NO INT,
+--     ADDLESS_NO INT,
+--     PROJECT_NO INT,
+--     SCHEDULE_NO INT,
+--     CUSTOMER_NO INT
+--     
+--     
+-- );
+-- DROP TABLE USER_DEPARTMENT;
+-- CREATE TABLE USER_DEPARTMENT(
+-- 	DEPT_NO INT primary key auto_increment,
+--     DEPT_TITLE VARCHAR(50)
+--     
+-- );
+-- DROP TABLE USER_ADDRESS;
+-- CREATE TABLE USER_ADDRESS(
+-- 	ADDRESS_NO INT primary key auto_increment,
+--     ADDRESS_LOCAL VARCHAR(30)
+--     
+-- );
+-- CREATE TABLE USER_PROJECT(
+-- 	PROJECT_NO INT primary key auto_increment,
+--     PROJECT_TITLE VARCHAR(100),
+--     PROJECT_NAME VARCHAR(100) NOT NULL
+-- );
+
+-- CREATE TABLE USER_SCHEDULE(
+-- 	SCHEDULE_NO INT primary key auto_increment,
+--     SCHEDULE_START DATE,
+--     SCHEDULE_LIMIT DATE
+-- );
+-- CREATE TABLE USER_CUSTOMER(
+-- 	CUSTOMER_NO INT primary key auto_increment,
+--     CUSTOMER_NAME VARCHAR(100) NOT NULL,
+--     CUSTOMER_DATE DATE NOT NULL,
+--     CUSTOMER_GENDER VARCHAR(10) check(CUSTOMER_GENDER IN('남','여')),
+--     CUSTOMER_ID VARCHAR(200) UNIQUE NOT NULL,
+--     CUSTOMAR_PW VARCHAR(200) UNIQUE NOT NULL
+-- );
+
+
+
+-- SELECT * FROM USER_INFO_02;
+-- /*dept_no, grade_no*/
+-- alter table USER_INFO_02 add 
+-- foreign key(DEPT_NO) references USER_DEPARTMENT(DEPT_NO);
+
+-- alter table USER_INFO_02 add 
+-- foreign key(ADDRESS_NO) references USER_ADDRESS(ADDRESS_no);  
+
+-- alter table USER_INFO_02 add 
+-- foreign key(SCHEDULE_NO) references USER_SCHEDULE(SCHEDULE_no);  
+
+-- alter table USER_INFO_02 add 
+-- foreign key(PROJECT_NO) references USER_PROJECT(PROJECT_NO);  
+
+-- alter table USER_INFO_02 add 
+-- foreign key(CUSTOMER_NO) references USER_CUSTOMER(CUSTOMER_NO);  
+
+
+/*********************************************************************/
 drop table user_info;
 create table user_Info(
 	user_no int primary key auto_increment,
@@ -73,74 +148,56 @@ foreign key(dept_no) references department(dept_no);
 alter table user_info add 
 foreign key(grade_no) references grade(grade_no);  
 
-/*
 
-	프로젝트 관리 : 테이블 몇개든 상관없이 짜보시고 foreign key까지 걸어보는 것까지!
-    테이블 필요한 컬럼 짜기 힘드시다면 어떤 기능이 있어야되는지 정도로 제출해도 괜찮아요@!
+CREATE TABLE PROJECT(
+	PRO_NO INT auto_increment primary key,
+    PRO_NAME VARCHAR(100) NOT NULL,
+    PRO_DESC TEXT,/*설명*/
+    START_DATE DATE,
+    END_DATE DATE,
+    STATUS VARCHAR(10) CHECK(STATUS IN('진행 전', '진행 중','완료', '중단'))
+);
+--  PROJECT_MEMBERS : USER_NO, PRO_NO
+CREATE TABLE PROJECT_MEMBERS(
+MEMBER_NO INT auto_increment primary key,
+USER_NO INT, 
+PRO_NO INT,
+MEM_ROLE VARCHAR(50)
+);
+-- 프로젝트 : 업무들 = 1 : M
+-- PROJECT_TASK : PRO_NO
+CREATE TABLE PROJECT_TASK(
+	TASK_NO INT auto_increment primary key,
+    PRO_NO INT,
+    TASK_NAME VARCHAR(100),
+    TASK_DESC TEXT,
+    STATUS VARCHAR(50) CHECK(STATUS IN('진행 전','진행 중','완료','중단')),
+	START_DATE DATE,
+    END_DATE DATE
+);
+
+--  PROJECT_MEMBERS : USER_NO, PRO_NO
+ALTER TABLE PROJECT_MEMBERS ADD
+FOREIGN KEY(USER_NO) references USER_INFO(USER_NO);
+ALTER TABLE PROJECT_MEMBERS ADD
+FOREIGN KEY(PRO_NO) references PROJECT(PRO_NO);
+
+-- PROJECT_TASK : PRO_NO
+ALTER TABLE PROJECT_TASK ADD
+FOREIGN KEY(PRO_NO) references PROJECT(PRO_NO);
+
+-- 일정 관리!
+
+ CREATE TABLE SCHEDULE(
+ 	SCHE_NO INT primary key auto_increment,
+    PRO_NO INT,
+    MEMBER_NO INT,
     
-*/
-DROP TABLE USER_INFO_02;
-CREATE TABLE USER_INFO_02(
-	USER_NO INT primary KEY auto_increment,
-	USER_ID VARCHAR(50) unique NOT NULL,
-    USER_PW VARCHAR(50) NOT NULL,
-    USER_NAME VARCHAR(50) NOT NULL,
-    USER_GENDER VARCHAR(10) check(USER_GENDER IN('남','여')),
-    DEPT_NO INT,
-    ADDLESS_NO INT,
-    PROJECT_NO INT,
-    SCHEDULE_NO INT,
-    CUSTOMER_NO INT
-    
+	SCHE_START DATE,
+	SCHE_LIMIT DATE,
+	WORK_START DATE,
+    WORK_LIMIT DATE
     
 );
-DROP TABLE USER_DEPARTMENT;
-CREATE TABLE USER_DEPARTMENT(
-	DEPT_NO INT primary key auto_increment,
-    DEPT_TITLE VARCHAR(50)
-    
-);
-DROP TABLE USER_ADDRESS;
-CREATE TABLE USER_ADDRESS(
-	ADDRESS_NO INT primary key auto_increment,
-    ADDRESS_LOCAL VARCHAR(30)
-    
-);
-CREATE TABLE USER_PROJECT(
-	PROJECT_NO INT primary key auto_increment,
-    PROJECT_TITLE VARCHAR(100),
-    PROJECT_NAME VARCHAR(100) NOT NULL
-);
-
-CREATE TABLE USER_SCHEDULE(
-	SCHEDULE_NO INT primary key auto_increment,
-    SCHEDULE_START DATE,
-    SCHEDULE_LIMIT DATE
-);
-CREATE TABLE USER_CUSTOMER(
-	CUSTOMER_NO INT primary key auto_increment,
-    CUSTOMER_NAME VARCHAR(100) NOT NULL,
-    CUSTOMER_DATE DATE NOT NULL,
-    CUSTOMER_GENDER VARCHAR(10) check(CUSTOMER_GENDER IN('남','여')),
-    CUSTOMER_ID VARCHAR(200) UNIQUE NOT NULL,
-    CUSTOMAR_PW VARCHAR(200) UNIQUE NOT NULL
-);
 
 
-
-SELECT * FROM USER_INFO_02;
-/*dept_no, grade_no*/
-alter table USER_INFO_02 add 
-foreign key(DEPT_NO) references USER_DEPARTMENT(DEPT_NO);
-
-alter table USER_INFO_02 add 
-foreign key(ADDRESS_NO) references USER_ADDRESS(ADDRESS_no);  
-
-alter table USER_INFO_02 add 
-foreign key(SCHEDULE_NO) references USER_SCHEDULE(SCHEDULE_no);  
-
-alter table USER_INFO_02 add 
-foreign key(PROJECT_NO) references USER_PROJECT(PROJECT_NO);  
-
-alter table USER_INFO_02 add 
-foreign key(CUSTOMER_NO) references USER_CUSTOMER(CUSTOMER_NO);  
