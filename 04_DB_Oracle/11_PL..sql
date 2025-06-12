@@ -17,6 +17,7 @@
     -[예외처리부(EXCEPTION SECTION)]
     : EXCEPTION 시작, 예외 발생 시 해결하기 위한 구문을 미리 기술
 */
+
 SET SERVEROUTPUT ON;
 BEGIN
 DBMS_OUTPUT.PUT_LINE('HELLO ORACLE')

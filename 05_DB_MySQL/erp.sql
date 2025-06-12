@@ -126,20 +126,31 @@ CREATE TABLE SCHEDULE_MEMBERS(
 
 /*
 품질(qa)보증 관리
+
 버그 및 오류 수정 처리
 - 오류 제목
 - 오류가 발생한 프로젝트
 - 발견자 이름
 - 내용
 - 버그 및 오류 (수정전, 수정 후, 수정됨)
+
+체크리스트
+-담당자 이름
+-확인 날짜
+-제목
+-목록
+-내용
+-확인 (TRUE,FALSE)
 */
-CREATE TABLE PROJECT_QA( -- 품질보증관리
+
+
+CREATE TABLE PROJECT_BUG( -- 오류관리
 	TITLE VARCHAR(100) NOT NULL,
     DEPT VARCHAR(100),
     NAME VARCHAR(100),
     PROJECT_TITLE VARCHAR(100) NOT NULL,
-    QA_DESC TEXT NOT NULL,
-    QA_STATUS VARCHAR(30) CHECK (STATUS IN ('수정전', '수정중', '완료'))
+    BUG_DESC TEXT NOT NULL,
+    BUG_STATUS VARCHAR(30) CHECK (STATUS IN ('수정전', '수정중', '완료'))
 );
 
 

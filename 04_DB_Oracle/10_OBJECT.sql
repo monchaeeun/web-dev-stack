@@ -507,4 +507,4 @@ GRANT SELECT ON kh.DEPARTMENT TO test;
 
 SELECT * FROM DEPT;
 
-/*버터링 먹고십다*/
+/**/
