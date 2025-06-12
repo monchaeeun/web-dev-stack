@@ -192,12 +192,12 @@ FOREIGN KEY(PRO_NO) references PROJECT(PRO_NO);
  	SCHE_NO INT primary key auto_increment,
     PRO_NO INT,
     MEMBER_NO INT,
-    
+    -- 프로젝트 시간 관리
 	SCHE_START DATE,
 	SCHE_LIMIT DATE,
+    -- 프로젝트 내 작업 시간 관리
 	WORK_START DATE,
     WORK_LIMIT DATE
-    
 );
 
 
