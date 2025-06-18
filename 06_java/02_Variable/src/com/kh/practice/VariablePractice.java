@@ -12,7 +12,7 @@ Scanner sc = new Scanner(System.in);
 //		v.method3();
 //		v.method4();
 //		v.method5();
-		v.method6();
+//		v.method6();
 		v.method7();
 	}
 	
@@ -24,7 +24,8 @@ Scanner sc = new Scanner(System.in);
 	 * 성인 2명과 청소년 3명이 영화를 보려고 할 때 지불해야 할 금액을 계산 후 출력하세요.
 	 * */
 	public void method1() {
-		System.out.println((20000*2)+ (7000 * 3));
+		
+		System.out.println((10000*2)+ (7000 * 3));
 
 	}
 	
@@ -51,9 +52,7 @@ Scanner sc = new Scanner(System.in);
 		System.out.println("z : "+ z);
 
 	}
-	
-	
-
+	//코드정렬 ctrl +  shift + f
 	/*
 	 * 정수 두 개를 입력 받아 두 수의 합(+), 차(-), 곱(*), 나누기(/)한 몫을 출력하세요.
 	 * 
@@ -67,6 +66,7 @@ Scanner sc = new Scanner(System.in);
 	public void method3() {
 		System.out.println("입력값a : ");
 		int a = sc.nextInt();
+		//int num = Integer.parseInt(sc.nextLine());
 		System.out.println("입력값b : ");
 		int b = sc.nextInt();
 		System.out.println("첫번째 정수 : "+ a);
@@ -75,6 +75,8 @@ Scanner sc = new Scanner(System.in);
 		System.out.println("빼기 : "+ (a-b));
 		System.out.println("곱하기 : "+ (a*b));
 		System.out.println("나누기 몫 : "+ (a/b));
+		
+		
 	}
 
 	/*
@@ -94,7 +96,7 @@ Scanner sc = new Scanner(System.in);
 		double b = sc.nextFloat();
 		
 		System.out.println("면적 : " + String.format("%.2f",a*b));
-		System.out.println("둘레 : "+ String.format("%.2f",(a+b)*2));
+		System.out.println("둘레 : "+ String.format("%.1f",(a+b)*2));
 
 	}
 
@@ -122,9 +124,10 @@ Scanner sc = new Scanner(System.in);
 	 * B unicode : 66
 	 * */
 	public void method6() {
+		System.out.println("문자 입력 : ");
 		char a = sc.nextLine().charAt(0);
-		System.out.println((System.identityHashCode(a))+ " : "+(int)a);
-		System.out.println((System.identityHashCode((int)a+1))+ " : " + ((int)a+1));
+		System.out.println(a + " : "+(int)a);
+		System.out.println((char)(a+1) + " : " + ((int)a+1));
 	}
 	
 	/*
@@ -145,8 +148,9 @@ Scanner sc = new Scanner(System.in);
 		System.out.print("수학 : ");
 		double c = sc.nextInt();
 		double d = (a+b+c)/3;
+		
 		System.out.println("총점 : " + (a+b+c));
-		System.out.println("총점 : " + String.format("%.2f",d));
+		System.out.println("평균 : " + String.format("%.2f",d));
 	}
 
 

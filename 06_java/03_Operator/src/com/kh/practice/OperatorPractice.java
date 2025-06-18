@@ -41,7 +41,7 @@ public class OperatorPractice {
 		int a = sc.nextInt();
 		//소수점(double, float)이 아님을 이용해서 버리기
 		System.out.println(a/100*100);
-		
+		System.out.println(a-(a%100));
 	}
 
 	//3개의 수를 입력 받아 입력 받은 수가 모두 같으면 true, 아니면 false를 출력하세요.
@@ -121,14 +121,15 @@ public class OperatorPractice {
 		int ch = sc.nextInt();
 		//300초 => 5분
 		
+		int seconds = ch;
+	
 		
-		int seconds = ch%60;
-		int b = ch/60;
-		int hours = b / 60;
-		int minute = hours%60;
-
-		System.out.println("입력된 초: "+ ch + "초");
-		System.out.println(hours + "시간"+ minute + "분"+ seconds + "초");
+		int hours = ch / 3600;
+		ch -= hours * 3600;
+		int minute = ch/60;
+		ch -= minute*60;
+		System.out.println("입력된 초: "+ seconds + "초");
+		System.out.println(hours + "시간"+ minute + "분"+ ch + "초");
 		
 	}
 	

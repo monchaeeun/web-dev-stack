@@ -9,11 +9,11 @@ public class ConditionPractice {
 	
 	public static void main(String[] args) {
 		ConditionPractice c = new ConditionPractice();
-		c.method1();
-		c.method2();
-		c.method3();
-		c.method4();
-		c.method5();
+//		c.method1();
+//		c.method2();
+//		c.method3();
+//		c.method4();
+//		c.method5();
 		c.method6();
 		c.method7();
 		c.method8();
@@ -37,7 +37,11 @@ public class ConditionPractice {
 		}
 		else if(a < 0)
 		{
-			
+			System.out.println("홀수다");
+		}
+		else 
+		{
+			System.out.println("양수만 입력해주세요.");
 		}
     	
     }
@@ -51,7 +55,22 @@ public class ConditionPractice {
         2
 
      */
-    public void method2() {
+    public void method2() 
+    {
+    	System.out.println("피자 조각 수를 입력하세요 : ");
+		int a = sc.nextInt();
+		System.out.println("먹는 사람 수를 입력하세요 : ");
+		int b = sc.nextInt();
+		int result;
+		if(a < b)
+		{
+			result = b/a+1;
+		}
+		else 
+		{
+			result = b/a;
+		}
+		System.out.println(result);
       
     }
 
@@ -72,8 +91,26 @@ public class ConditionPractice {
         평균 : 61.0
         축하합니다, 합격입니다!
      */
-    public void method3() {
-    	
+    public void method3() 
+    {
+    	System.out.println("국어점수를 입력하세요 : ");
+		double a = sc.nextDouble();
+		System.out.println("수학점수를 입력하세요 : ");
+		double b = sc.nextDouble();
+		System.out.println("영어점수를 입력하세요 : ");
+		double c = sc.nextDouble();
+		
+		double sum = a+b+c;
+		double result = (a+b+c)/3;
+		System.out.println("합계 : " + String.format("%.0f", sum));
+		System.out.println("평균 : " + String.format("%.1f", result));
+		if(result >= 60 && a >= 40 && b >= 40 && c >= 40)
+		{
+			System.out.println("축하합니다, 합격입니다!");
+		}
+		else {
+			System.out.println("불합격입니다.");
+		}
     }
 
     /*
@@ -83,8 +120,26 @@ public class ConditionPractice {
         구매한 옷 가격 : 580000
         464000
      */
-    public void method4() {
-
+     
+    public void method4() 
+    {
+    	System.out.print("구매한 옷 가격을 입력하세요 : ");
+		double a = sc.nextDouble();
+		double result = a;
+		if(a >= 500000)
+		{
+			result = (a * (1-0.2));
+		}
+		else if(a >= 300000)
+		{
+			result = (a * (1-0.1));
+		}
+		else if(a >= 100000)
+		{
+			result = (a * (1-0.05));
+			
+		}
+		System.out.println(String.format("%.1f", result) +"원 입니다");
     }
 
 
@@ -93,6 +148,24 @@ public class ConditionPractice {
         입력받은 각에 따라 예각일 때 1, 직각일 때 2, 둔각일 때 3, 평각일 때 4를 출력하세요.
      */
     public void method5() {
+    	System.out.println("각도를 입력하세요 : ");
+		int a = sc.nextInt();
+		if(0 < a&& a < 90)
+		{
+			System.out.println("1");
+		}
+		else if(a == 90)
+		{
+			System.out.println("2");
+		}
+		else if(90 < a&& a < 180)
+		{
+			System.out.println("3");
+		}
+		else if(a == 180)
+		{
+			System.out.println("4");
+		}
     	
     }
 
@@ -121,7 +194,28 @@ public class ConditionPractice {
        로그인 실패
     */
     public void method6() {
-
+    	String id = "happy";
+    	int pw = 1234;
+    	System.out.println("아이디 : ");
+		String a = sc.nextLine();
+		System.out.println("비밀번호 : ");
+		int b = sc.nextInt();
+		if(a == id && b == pw)
+		{
+			System.out.println("로그인 성공!");
+		}
+		else if(a != id && b == pw)
+		{
+			System.out.println("아이디가 틀렸습니다.");
+		}
+		else if(a == id && b != pw)
+		{
+			System.out.println("비밀번호가 틀렸습니다.");
+		}
+		else
+		{
+			System.out.println("로그인 실패");
+		}
     }
 
     /*
