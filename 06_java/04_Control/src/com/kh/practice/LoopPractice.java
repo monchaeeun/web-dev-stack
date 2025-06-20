@@ -3,6 +3,10 @@ package com.kh.practice;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import com.kh.practice.controller.RockPapperScissorController;
+import com.kh.practice.model.RockPaPerScissor;
+import com.kh.practice.view.RockPaperScissorView;
+
 class LoopPractice {
 
 	Scanner sc = new Scanner(System.in);
@@ -14,7 +18,7 @@ class LoopPractice {
 //		l.method2();
 //		l.method3();
 //		l.method4();
-		l.method5();
+//		l.method5();
 		l.method6();
 
 	}
@@ -25,10 +29,9 @@ class LoopPractice {
 	public void method1() {
 		System.out.print("입력 : ");
 		int a = Integer.parseInt(sc.nextLine());
-		int re = a;
-		for (int i = 0; i < re; i++) {
-			System.out.println(a);
-			a -= 1;
+
+		for (int i = a; i >= 1; i--) {
+			System.out.println(i);
 		}
 
 	}
@@ -38,17 +41,13 @@ class LoopPractice {
 		int num = 0;
 		int re = 0;
 		int count = 0;
-		while (true) {
+		while (re < 100) {
 			++count;
 			++num;
 			if (num % 2 == 1) {
 				re += num;
 			} else {
 				re -= num;
-			}
-
-			if (re == 100) {
-				break;
 			}
 		}
 		System.out.println("총 횟수 : " + count);
@@ -82,7 +81,7 @@ class LoopPractice {
 	public void method4() {
 
 		while (true) {
-			int ran = (int) (Math.random() * 10);
+			int ran = (int) (Math.random() * 11);
 			System.out.println(ran);
 			if (ran == 0) {
 				System.out.println("정답!");
@@ -100,43 +99,53 @@ class LoopPractice {
 	 * 
 	 */
 	public void method5() {
-		int count1 = 0;
-		int count2 = 0;
-		int count3 = 0;
-		int count4 = 0;
-		int count5 = 0;
-		int count6 = 0;
+//		int count1 = 0;
+//		int count2 = 0;
+//		int count3 = 0;
+//		int count4 = 0;
+//		int count5 = 0;
+//		int count6 = 0;
+//		for (int i = 0; i < 10; i++) {
+//			int ran = (int) (Math.random() * 6 + 1);
+//
+//			switch (ran) {
+//			case 1:
+//				count1 += 1;
+//				break;
+//			case 2:
+//				count2 += 1;
+//				break;
+//			case 3:
+//				count3 += 1;
+//				break;
+//			case 4:
+//				count4 += 1;
+//				break;
+//			case 5:
+//				count5 += 1;
+//				break;
+//			case 6:
+//				count6 += 1;
+//				break;
+//			}
+//		}
+//		System.out.println("1 : " + count1);
+//		System.out.println("2 : " + count2);
+//		System.out.println("3 : " + count3);
+//		System.out.println("4 : " + count4);
+//		System.out.println("5 : " + count5);
+//		System.out.println("6 : " + count6);
+//		
+		int[] random = new int[6];
 		for (int i = 0; i < 10; i++) {
-			int ran = (int) (Math.random() * 6 + 1);
+			int ran = (int) (Math.random() * 6);
+			random[ran]++;
 
-			switch (ran) {
-			case 1:
-				count1 += 1;
-				break;
-			case 2:
-				count2 += 1;
-				break;
-			case 3:
-				count3 += 1;
-				break;
-			case 4:
-				count4 += 1;
-				break;
-			case 5:
-				count5 += 1;
-				break;
-			case 6:
-				count6 += 1;
-				break;
-			}
 		}
-		System.out.println("1 : " + count1);
-		System.out.println("2 : " + count2);
-		System.out.println("3 : " + count3);
-		System.out.println("4 : " + count4);
-		System.out.println("5 : " + count5);
-		System.out.println("6 : " + count6);
 
+		for (int i = 0; i < random.length; i++) {
+			System.out.println((i + 1) + ": " + random[i]);
+		}
 	}
 
 	/*
@@ -150,62 +159,7 @@ class LoopPractice {
 	 * 가위바위보 : 보 컴퓨터 : 바위 김미경 : 보 이겼습니다 ! 비긴 횟수 : 1, 진 횟수 : 1, 이긴 횟수 : 1
 	 */
 	public void method6() {
-
-		int win = 0;
-		int dr = 0;
-		int lose = 0;
-		while (true) {
-			System.out.print("사용자 입력(가위| 바위| 보) : ");
-			String a = sc.nextLine();
-			int ran = (int) (Math.random() * 3 + 1);
-			System.out.println("사용자 : " + a);
-			if (ran == 1) {
-
-				System.out.println("컴퓨터 : 가위");
-				if (a.equals("가위")) {
-					System.out.println("비겼습니다.");
-					dr++;
-				} else if (a.equals("바위")) {
-					System.out.println("이겼습니다.");
-					win++;
-					break;
-				} else if (a.equals("보")) {
-					System.out.println("졌습니다 ㅠㅠ");
-					lose++;
-				}
-			} else if (ran == 2) {
-				System.out.println("컴퓨터 : 바위");
-				if (a.equals("가위")) {
-					System.out.println("졌습니다 ㅠㅠ");
-					lose++;
-				} else if (a.equals("바위")) {
-					System.out.println("비겼습니다.");
-					dr++;
-				} else if (a.equals("보")) {
-					System.out.println("이겼습니다.");
-					win++;
-					break;
-
-				}
-			} else if (ran == 3) {
-				System.out.println("컴퓨터 : 보");
-				if (a.equals("가위")) {
-					System.out.println("이겼습니다.");
-					win++;
-					break;
-
-				} else if (a.equals("바위")) {
-					System.out.println("졌습니다 ㅠㅠ");
-					lose++;
-				} else if (a.equals("보")) {
-					System.out.println("비겼습니다.");
-					dr++;
-				}
-			}
-		}
-
-		System.out.println("진 횟수 : " + lose);
-		System.out.println("이긴 횟수 : " + win);
-		System.out.println("비긴 횟수 : " + dr);
-	}
+		RockPaperScissorView view = new RockPaperScissorView();
+		view.gameStart();
+    }
 }

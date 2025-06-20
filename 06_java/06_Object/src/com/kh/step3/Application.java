@@ -26,5 +26,7 @@ public class Application {
 		System.out.println("곱하기 : "+c.multiply(20/*a*/, 35/*b*/));
 		
 		System.out.println("나누기 : " + Calculator.divid(51, 4)); 	
+		System.out.println(c.factorial(10));
+		System.out.println(c.factorial2(5));
 	}
 }
