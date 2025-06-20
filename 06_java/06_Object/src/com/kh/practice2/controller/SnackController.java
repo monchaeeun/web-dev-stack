@@ -5,7 +5,7 @@ import java.util.Scanner;
 import com.kh.practice2.model.Snack;
 
 public class SnackController {
-	Snack s = new Snack();
+	private Snack s = new Snack();
 	Scanner sc = new Scanner(System.in);
 	
 	public String saveData(String kind, String name, 
@@ -22,9 +22,10 @@ public class SnackController {
 		
 		return "저장되었습니다.";
 	}
-	public String confirmData() 
+	
+	public Snack confirmData() 
 	{
-		return s.kind + "(" + s.name + " - " + s.flavor + ") " + s.numOf + "개" + s.price +  "원";
+		return s;
 	}
 
 }

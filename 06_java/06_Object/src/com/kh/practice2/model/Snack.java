@@ -1,11 +1,11 @@
 package com.kh.practice2.model;
 
 public class Snack {
-	public String kind;
-	public String name;
-	public String flavor;
-	public int numOf;
-	public int price;
+	private String kind;
+	private String name;
+	private String flavor;
+	private int numOf;
+	private int price;
 	
 	public Snack() {}
 
@@ -60,8 +60,7 @@ public class Snack {
 
 	@Override
 	public String toString() {
-		return "Snack [kind=" + kind + ", name=" + name + ", flavor=" + flavor + ", numOf=" + numOf + ", price=" + price
-				+ "]";
+		return kind + "(" + name + " - " + flavor + ")" + numOf + "개" + price + "원";
 	}
 	
 	

@@ -25,7 +25,6 @@ public class Application {
 		int price = Integer.parseInt(sc.nextLine());
 		
 		System.out.println(snack.saveData(kind, name, flavor, numOf, price));
-		
 		System.out.println(snack.confirmData());
 	}
 
