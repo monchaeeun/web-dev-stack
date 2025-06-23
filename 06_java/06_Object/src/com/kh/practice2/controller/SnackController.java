@@ -6,21 +6,17 @@ import com.kh.practice2.model.Snack;
 
 public class SnackController {
 	private Snack s = new Snack();
-	Scanner sc = new Scanner(System.in);
 	
-	public String saveData(String kind, String name, 
-			String flavor,int numOf,int price)
+	public String saveData(Snack snackData)
 	{
-		Scanner sc = new Scanner(System.in);
+	
+		s.setKind(snackData.getKind());
+		s.setName(snackData.getName());
+		s.setFlavor(snackData.getFlavor());
+		s.setNumOf(snackData.getNumOf());
+		s.setPrice(snackData.getPrice());		
 		
-		
-		s.setKind(kind);
-		s.setName(name);
-		s.setFlavor(flavor);
-		s.setNumOf(numOf);
-		s.setPrice(price);		
-		
-		return "저장되었습니다.";
+		return "저장 완료되었습니다.";
 	}
 	
 	public Snack confirmData() 
