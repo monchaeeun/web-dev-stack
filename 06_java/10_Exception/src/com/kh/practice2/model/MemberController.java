@@ -1,6 +1,12 @@
-package com.kh.array.practice2.model;
+package com.kh.practice2.model;
 
+import java.util.DuplicateFormatFlagsException;
 import java.util.Scanner;
+
+import com.kh.practice2.exception.DuplicateIdExdeption;
+import com.kh.practice2.exception.RecordNotFoundException;
+
+
 
 public class MemberController {
 	// 공간만 만들기
@@ -31,14 +37,44 @@ public class MemberController {
 		}
 		return num;
 	}
+	public int idCheck2(String id) throws RecordNotFoundException{
+		num = 0;
+		for (int i = 0; i < member.length; i++) {
+			if (member[i].getId() != null && member[i].getId().equals(id)) {
+				num = i;
+				return num;
+			} else {
+				
+				num = -1;
+			}
+		}
+		throw new RecordNotFoundException();
+	}
+	
+	public int updateCheck(String id) throws DuplicateIdExdeption{
+		num = 0;
+		for (int i = 0; i < member.length; i++) {
+			if (member[i].getId() != null && member[i].getId().equals(id)) {				
+				throw new DuplicateIdExdeption();
+			} else {
+				num = -1;
+			}
+		}
+		return num;
+	}
 
 	public void checkSameId() {
 		while (true) {
 			System.out.print("아이디 : ");
 			String id = sc.nextLine();
-			if (idCheck(id) >= 0) {
-				System.out.println("중복된 아이디입니다. 다시 입력해주세요.");
-				continue;
+			try {
+				if (updateCheck(id) >= 0) {
+					System.out.println("중복된 아이디입니다. 다시 입력해주세요.");
+					continue;
+				}
+			} catch (DuplicateIdExdeption e) {
+				
+				e.printStackTrace();
 			}
 			member[countNum()].setId(id);
 			break;
@@ -80,25 +116,27 @@ public class MemberController {
 	public void changeInfo() {
 		System.out.print("아이디 : ");
 		String changeInfo = sc.nextLine();
-		if (idCheck(changeInfo) >= 0) {
+		try {
+			if (idCheck2(changeInfo) >= 0) {
 
-			int i = idCheck(changeInfo);
+				int i = idCheck2(changeInfo);
 
-			System.out.println("수정할 회원의 이름 : ");
-			String newName = sc.nextLine();
-			member[i].setName(newName);
+				System.out.println("수정할 회원의 이름 : ");
+				String newName = sc.nextLine();
+				member[i].setName(newName);
 
-			System.out.println("수정할 이메일 : ");
-			String newEmail = sc.nextLine();
-			member[i].setEmail(newEmail);
+				System.out.println("수정할 이메일 : ");
+				String newEmail = sc.nextLine();
+				member[i].setEmail(newEmail);
 
-			System.out.println("수정할 비밀번호: ");
-			String newPwd = sc.nextLine();
-			member[i].setPwd(newPwd);
+				System.out.println("수정할 비밀번호: ");
+				String newPwd = sc.nextLine();
+				member[i].setPwd(newPwd);
 
-		} else {
-			System.out.println("회원 정보가 없습니다.");
-
+			}
+		} catch (RecordNotFoundException e) {
+			System.out.println(e.getMessage());
+			changeInfo();
 		}
 	}
 

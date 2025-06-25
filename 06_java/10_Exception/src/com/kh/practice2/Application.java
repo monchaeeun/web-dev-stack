@@ -1,9 +1,9 @@
-package com.kh.array.practice2;
+package com.kh.practice2;
 
 import java.util.Scanner;
 
-import com.kh.array.practice2.model.Member;
-import com.kh.array.practice2.model.MemberController;
+import com.kh.practice2.model.Member;
+import com.kh.practice2.model.MemberController;
 
 public class Application {
 	public static void main(String[] args) {
@@ -22,40 +22,47 @@ public class Application {
 
 		while (true) {
 			System.out.println("1. 새 회원 등록 | 2. 회원 정보 수정 | 3. 전체 회원 정보 출력 | 9. 끝내기");
-			int num = Integer.parseInt(sc.nextLine());
-			if (num == 1) {
-				if (controller.countNum() >= 3) {
-					System.out.println("회원 수가 모두 꽉 찼기 때문에 일부 메뉴만 오픈합니다.");
-					continue;
+			
+			try {
+				int num = Integer.parseInt(sc.nextLine());
+				if (num == 1) {
+					if (controller.countNum() >= 3) {
+						System.out.println("회원 수가 모두 꽉 찼기 때문에 일부 메뉴만 오픈합니다.");
+						continue;
+					}
+					
+					//회원 등록
+					System.out.println("현재 등록된 회원 수는" + controller.countNum() + "명입니다.");
+					System.out.println("최대 등록 가능한 회원 수는 3명입니다.");
+					
+					
+					controller.checkSameId();
+					controller.createInfo();
+					
+
+
+					// 수정
+				} else if (num == 2) {
+					controller.changeInfo();
 				}
-				
-				//회원 등록
-				System.out.println("현재 등록된 회원 수는" + controller.countNum() + "명입니다.");
-				System.out.println("최대 등록 가능한 회원 수는 3명입니다.");
-				
-				
-				controller.checkSameId();
-				controller.createInfo();
-				
+				// 출력
+				else if (num == 3) {
+					controller.printInfo();
+				} 
+				else if (num == 9) {
+					System.out.println("시스템을 종료합니다.");
+					break;
+				}
+				else {
+					System.out.println("잘못 입력하셨습니다. 다시 입력해주세요");
+				}
 
-
-				// 수정
-			} else if (num == 2) {
-				controller.changeInfo();
+			
+			} catch (Exception e) {
+				System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
 			}
-			// 출력
-			else if (num == 3) {
-				controller.printInfo();
-			} 
-			else if (num == 9) {
-				System.out.println("시스템을 종료합니다.");
-				break;
-			}
-			else {
-				System.out.println("잘못 입력하셨습니다. 다시 입력해주세요");
-			}
-
-		}
+			
+			
 
 		/*
 		 * 2. 회원 정보 수정 -> 아이디를 입력 받았는데 기존 멤버 배열에 아이디가 없는 경우 "회원 정보가 없습니다." 출력 후 다시 메인
@@ -67,6 +74,6 @@ public class Application {
 		 * 메뉴 번호 :
 		 */
 
-		
+		}	
 	}
 }
