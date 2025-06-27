@@ -17,10 +17,15 @@ public class Application {
 		books.add(new Book("원피스 111", true, 15));
 		books.add(new Book("귀멸의 칼날 23", false, 19));
 		books.add(new Book("진격의 거인 Before the fall 16", false, 19));
+		
+		
 	}
 	public static void main(String[] args) {
+		BookController b = new BookController();
 		Application a = new Application();
+		Scanner sc = new Scanner(System.in);
 		
+		 
 		a.Start();
 		/*
 		 * -> 회원가입 
@@ -47,15 +52,6 @@ public class Application {
 		 * 4. 프로그램 종료
 		 * 
 		 * */
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
 	public void Start() {
 		BookController b = new BookController();
@@ -67,19 +63,16 @@ public class Application {
 		String name = sc.nextLine();
 		System.out.print("나이 : ");
 		int age = Integer.parseInt(sc.nextLine());
-		boolean logInCheck = b.logIn(name, age);
-		if(logInCheck)
-		{
-			a.menu();
-		}
-		else
-		{
-			System.out.println("로그인에 실패하였습니다.");
-		}
+		b.logIn(name, age);
+		a.menu();
+		
 	}
+	//3. 렌탈 페이지
 	public void rentalPage() 
 	{
+		
 		BookController b = new BookController();
+		b.ad();
 		Scanner sc = new Scanner(System.in);
 		int i = 1;
 		for(Book bk :books)
@@ -89,10 +82,19 @@ public class Application {
 		}
 		System.out.print("대여할 책을 선택하세요 ->");
 		int check = Integer.parseInt(sc.nextLine());
-		b.rentalBook(check);
-		
-	}
+		boolean myBook = b.checkList(books.get(check-1));
+		if(!myBook)
+		{
+		 System.out.println(b.rentalBook(books.get(check-1), check-1));				
+		}
+		else
+		{
+			System.out.println("책을 이미 대여하였습니다.");
+		}
+
 	
+	}
+
 	public void menu() 
 	{	
 		Application a = new Application();

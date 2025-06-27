@@ -13,4 +13,9 @@ public class Member {
 	private int age;
 	private int coupon;
 	private ArrayList<Book> bookList = new ArrayList<>();
+	
+	public Member(String name, int age) {
+		this.name = name;
+		this.age = age;
+	}
 }
