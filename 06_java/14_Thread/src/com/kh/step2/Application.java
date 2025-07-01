@@ -1,0 +1,16 @@
+package com.kh.step2;
+
+public class Application {
+	
+	public static void main(String[] args)
+	{
+		// 1. Thread 생성
+		ComeThread come = new ComeThread();
+		GoThread go = new GoThread();
+		
+		Thread t1 = new Thread(come, "ComeThread");
+		Thread t2 = new Thread(go, "goThread");
+		t1.start();
+		t2.start();
+	}
+}

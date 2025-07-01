@@ -51,9 +51,7 @@ public class A_Match {
 		 		result = 
 				students.stream()
 				.filter(student -> student.getGender().equals("남자"))
-				.anyMatch(student -> student.getMath() +student.getEnglish()/2 >=90);
-				
-				
+				.anyMatch(student -> (student.getMath() +student.getEnglish())/2 >=90); 
 				
 				System.out.println("남학생들중에 평균이 90점 이상이 한 명이라도 존재하는가?" + result);
 		
