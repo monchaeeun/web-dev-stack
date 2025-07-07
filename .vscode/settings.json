@@ -1,0 +1,6 @@
+{
+  "powermode.enabled": true,
+  "powermode.presets": "flames",
+  "powermode.combo.location": "off",
+  "powermode.shake.intensity": 2
+}

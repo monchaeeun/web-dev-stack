@@ -184,7 +184,7 @@ CREATE TABLE HRM_WORK(
     STATUS VARCHAR(30) CHECK (STATUS IN ('정상','지각','결근','조퇴','휴가')),
     USER_NO INT 
 );
-
+-- user_infouser_infoUSER_NOUSER_NO
 -- 재무 관리: 월급,비용 지출 및 수입 관리
 CREATE TABLE FINANCIAL_SALARY(
 	SALARY_NO	 INT AUTO_INCREMENT PRIMARY KEY,

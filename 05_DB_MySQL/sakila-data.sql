@@ -5,7 +5,7 @@
 -- Copyright (c) 2006, 2025, Oracle and/or its affiliates.
 
 -- Redistribution and use in source and binary forms, with or without
--- modification, are permitted provided that the following conditions are
+-- modification, are pecountrycountryrmitted provided that the following conditions are
 -- met:
 
 -- * Redistributions of source code must retain the above copyright notice,
