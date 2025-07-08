@@ -37,6 +37,7 @@ public class MemberDAO {
 		ps.setInt(4, member.getAge());
 		ps.executeUpdate();
 	}
+	
 	// 5. 전체 추력
 	public ArrayList<Member> printAll() throws SQLException
 	{
@@ -68,6 +69,19 @@ public class MemberDAO {
 		return null;
 
 	}
-	
+	//로그인
+	public boolean checkName(String id, String pwd) throws SQLException {
+		Connection connect = connect();
+
+		String query = "SELECT * FROM person WHERE name = ? AND age = ? AND addr = ?";
+		PreparedStatement ps = connect.prepareStatement(query);
+		ps.setString(1, id);
+		ps.setString(2, pwd);
+
+		ResultSet rs = ps.executeQuery();
+		// rs.next() - 존재하면 true, 존재하지 않으면 false
+		return rs.next();
+
+	}
 
 }
