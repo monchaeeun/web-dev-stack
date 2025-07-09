@@ -13,7 +13,7 @@
 					views/result.jsp 에서
 					성공하면 해당 정보 출력
 					실패하면 검색에 실패했습니다 --%>
-<form action="searchServlet" method="post">
+<form action="/searchServlet" method="post">
 	아이디 검색 : <input type="text" name="id"> <input type="submit" value="검색">
 	</form>
 </body>

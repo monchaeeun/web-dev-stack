@@ -48,8 +48,7 @@ public class MemberDAO {
 		ResultSet rs = ps.executeQuery();
 		ArrayList<Member> list = new ArrayList<>();
 		while (rs.next()) {
-			Member member = new Member(rs.getString("id"), rs.getString("name"),
-										rs.getString("pwd"), rs.getInt("age"));
+			Member member = new Member(rs.getString("id"), rs.getString("name"),rs.getString("pwd"), rs.getInt("age"));
 			list.add(member);
 		}
 		return list;
@@ -64,23 +63,27 @@ public class MemberDAO {
 		Member member = null;
 		if (rs.next()) {
 			member = new Member(rs.getString("id"), rs.getString("name"), rs.getString("pwd"), rs.getInt("age"));
+			System.out.println("memberDAO 멤버 리스트 상태 : " + member);
 			return member;
 		}
 		return null;
 
 	}
 	//로그인
-	public boolean checkName(String id, String pwd) throws SQLException {
+	public Member login(String id, String pwd) throws SQLException {
 		Connection connect = connect();
-
-		String query = "SELECT * FROM person WHERE name = ? AND age = ? AND addr = ?";
+		String query = "SELECT * FROM member WHERE id = ? AND pwd = ?";
 		PreparedStatement ps = connect.prepareStatement(query);
 		ps.setString(1, id);
 		ps.setString(2, pwd);
-
 		ResultSet rs = ps.executeQuery();
-		// rs.next() - 존재하면 true, 존재하지 않으면 false
-		return rs.next();
+		Member member = null;
+		if (rs.next()) {
+			member = new Member(rs.getString("id"), rs.getString("name"), rs.getString("pwd"), rs.getInt("age"));
+			System.out.println("memberDAO 멤버 리스트 상태 : " + member);
+			return member;
+		}
+		return null;
 
 	}
 

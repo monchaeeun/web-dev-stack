@@ -26,6 +26,7 @@ public class searchServlet extends HttpServlet {
 			
 			
 			Member member = dao.search(id);
+			System.out.println("searchServlet 멤버 리스트 상태 : " + member);
 			
 			request.setAttribute("member", member);
 			request.getRequestDispatcher("/views/result.jsp").forward(request, response);

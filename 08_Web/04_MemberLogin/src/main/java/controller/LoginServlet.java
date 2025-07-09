@@ -10,30 +10,42 @@ import vo.Member;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import dao.MemberDAO;
 
 
-@WebServlet("/allMember")
-public class AllMemberServlet extends HttpServlet {
+@WebServlet("/login")
+public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	
+		
+		
 		try {
-			
+			String id = request.getParameter("id");
+			String pwd =request.getParameter("pwd");
 			MemberDAO dao = new MemberDAO();
-			System.out.println("AllMember Servlet!");
-			ArrayList<Member> list = dao.printAll();
+			Member member = dao.login(id, pwd);
 			
-			System.out.println("멤버 리스트 : "+list);
-			request.setAttribute("list", list);
-			request.getRequestDispatcher("/views/allMember.jsp").forward(request, response);
+			//HttpSession
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("member",member);
+			// 2. 세션에 바인딩
+			//request.getRequestDispatcher("/").forward(request, response);
+			response.sendRedirect("/");
 			
 		} catch (SQLException e) {
-			
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+	
+	
+	
 	
 	}
 
