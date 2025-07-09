@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>if</title>
+</head>
+<body>
+
+<form action="if4_view.jsp">
+숫자입력 : <input type="text" name="number">
+<input type="submit" value="전송">
+</form>
+
+
+
+
+</body>
+</html>
