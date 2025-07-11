@@ -22,8 +22,8 @@
 	 <c:otherwise>
 	<li><a href="/views/search.jsp">회원 검색</a></li>	
 	<%-- ?key = value --%>
-	<li> <a href="/front?command=allMember">전체 회원 보기</a></li>
-	<li> <a href="/front?command=logout">로그아웃</a> </li>
+	<li> <a href="/allMember.do">전체 회원 보기</a></li>
+	<li> <a href="/logout.do">로그아웃</a> </li>
 	 </c:otherwise>
 	 </c:choose>	
 	</ul>
