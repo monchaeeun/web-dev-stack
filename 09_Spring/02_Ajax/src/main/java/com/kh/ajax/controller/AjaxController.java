@@ -49,6 +49,23 @@ public class AjaxController {
 		//if(check != null) return false;
 		
 		return service.idBoolCheck(id);
-		
+	}
+	@ResponseBody
+	@PostMapping("/signup")
+	public void signup(Member vo)
+	{
+		//아이디에 중복이 있는지 체크
+		System.out.println(vo.getId());
+		System.out.println(vo.getPwd());
+//		boolean check = service.idBoolCheck(vo.getId());
+//		//중복이 없을 경우 회원가입 
+//		if(check)
+//		{
+//			
+//		}
+//		else
+//		{
+//			
+//		}
 	}
 }

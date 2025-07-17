@@ -39,17 +39,18 @@
 				<div class="menu-group">
 						<div class="menu-title">재무 관리</div>
 						<div class="submenu">
-							<a href="/example">Example</a>
-							<a href="#">출퇴근 기록</a>
-							<a href="#">부서 관리</a>		
+							<a href="/finance/salary">급여 관리</a>
+							<a href="/finance/budget">예산 계획</a>
+							<a href="/finance/transaction">수입/지출 관리</a>
+							<a href="/finance/stats">매출 분석</a>
+							<a href="/finance/purchase">매입 내역 관리</a>		
 						</div>
 					</div>
 					<div class="menu-group">
 							<div class="menu-title">품질 관리</div>
 							<div class="submenu">
-								<a href="/example">Example</a>
-								<a href="#">출퇴근 기록</a>
-								<a href="#">부서 관리</a>		
+								<a href="/example">품질 검사</a>
+								<a href="#">불량 처리 이력</a>
 							</div>
 						</div>
 				
