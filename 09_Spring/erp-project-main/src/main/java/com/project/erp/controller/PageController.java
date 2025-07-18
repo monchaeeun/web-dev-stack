@@ -26,11 +26,10 @@ public class PageController {
 		return "page/login";
 	}
 	
-	@GetMapping("/example")
-	public String example(Model model)
+	@GetMapping("/register")
+	public String register(Model model)
 	{
-		model.addAttribute("component", "../component/example.jsp");
-		return "/common/layout";
+		return "/page/register";
 	}
 	
 }

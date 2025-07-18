@@ -22,8 +22,9 @@ public class MemberService {
 	{
 		return mapper.idBoolCheck(id);
 	}
+	
 	public void register(Member vo)
 	{
-		
+		mapper.register(vo);
 	}
 }
