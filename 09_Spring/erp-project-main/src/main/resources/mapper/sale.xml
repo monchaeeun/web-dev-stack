@@ -16,6 +16,8 @@
 INSERT INTO sale(sale_date,product_name, category,gender,quantity,var_amount,total_amount)
 VALUES(#{saleDate},#{productName},#{category},#{gender},#{quantity},#{var_amount},#{total_amount})
 </insert>
+
+
 <select id="viewSale" resultType="SaleMap">
 SELECT * FROM sale 
 </select>
