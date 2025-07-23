@@ -1,0 +1,63 @@
+<!--이거 mapper 타입임-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.upload.mapper.BoardMapper">
+
+<resultMap id="boardMap" type="Board">
+<id column="no" property="no"/>
+<result column="title" property="title"/>
+<result column="content" property="content"/>
+<result column="url" property="url"/>
+<result column="created_at" property="createdAt"/>
+</resultMap>
+
+<!--insert-->
+<insert id="addBoard" parameterType="Board">
+INSERT INTO board(title,content,url,created_at)
+SELECT #{title}, #{content},#{url},#{createdAt}
+FROM DUAL
+WHERE NOT EXISTS(
+	SELECT 1 FROM board
+	WHERE title = #{title}
+	AND content = #{content}
+	AND url = #{url}
+	AND created_at = #{createdAt}
+)
+</insert>
+<!--전체 조회-->
+<select id="allBoard" resultMap="boardMap">
+SELECT * FROM board
+</select>
+
+<!--조회-->
+
+<select id="searchBoard" parameterType="String" resultType="Board">
+SELECT * FROM board
+WHERE title LIKE CONCAT('%',#{keyword},"%")
+OR content LIKE CONCAT('%',#{keyword},"%")
+</select>
+
+<!-- 수정 -->
+<update id="updateBoard" parameterType="Board">
+UPDATE board
+<set>
+<if test="title != null">
+title = #{title},
+</if>
+<if test="content != null">
+content = #{content},
+</if>
+<if test="url != null">
+url = #{url},
+</if>
+<if test="createdAt != null">
+created_at = #{createdAt},
+</if>
+</set>
+WHERE no = #{no}
+</update>
+<!--삭제-->
+<delete id="deleteBoard">
+DELETE FROM board
+WHERE no = #{no}
+</delete>
+</mapper>
