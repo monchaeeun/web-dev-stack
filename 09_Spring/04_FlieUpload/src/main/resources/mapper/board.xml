@@ -12,32 +12,43 @@
 
 <!--insert-->
 <insert id="addBoard" parameterType="Board">
-INSERT INTO board(title,content,url,created_at)
-SELECT #{title}, #{content},#{url},#{createdAt}
+INSERT INTO board(title,content,url)
+SELECT #{title}, #{content},#{url}
 FROM DUAL
 WHERE NOT EXISTS(
 	SELECT 1 FROM board
 	WHERE title = #{title}
 	AND content = #{content}
 	AND url = #{url}
-	AND created_at = #{createdAt}
 )
 </insert>
+
+<insert id="insert" parameterType="Board">
+INSERT INTO board(title,content,url)
+VALUES(#{title}, #{content},#{url})
+</insert>
+
 <!--전체 조회-->
-<select id="allBoard" resultMap="boardMap">
+<select id="selectAll" resultMap="boardMap">
 SELECT * FROM board
 </select>
 
 <!--조회-->
 
-<select id="searchBoard" parameterType="String" resultType="Board">
+<!--<select id="select" parameterType="String" resultType="Board">
 SELECT * FROM board
-WHERE title LIKE CONCAT('%',#{keyword},"%")
-OR content LIKE CONCAT('%',#{keyword},"%")
+WHERE title LIKE CONCAT('%',#{keyword},'%')
+OR content LIKE CONCAT('%',#{keyword},'%')
+</select>
+-->
+
+<select id="select" parameterType="int" resultType="Board">
+SELECT * FROM board
+WHERE no = #{no}
 </select>
 
 <!-- 수정 -->
-<update id="updateBoard" parameterType="Board">
+<update id="update" parameterType="Board">
 UPDATE board
 <set>
 <if test="title != null">
@@ -49,14 +60,13 @@ content = #{content},
 <if test="url != null">
 url = #{url},
 </if>
-<if test="createdAt != null">
-created_at = #{createdAt},
-</if>
 </set>
 WHERE no = #{no}
 </update>
+
+
 <!--삭제-->
-<delete id="deleteBoard">
+<delete id="delete" parameterType="int">
 DELETE FROM board
 WHERE no = #{no}
 </delete>

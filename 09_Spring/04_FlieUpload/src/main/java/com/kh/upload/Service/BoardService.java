@@ -15,28 +15,28 @@ public class BoardService implements BoardMapper{
 	private BoardMapper mapper;
 
 	@Override
-	public void addBoard(Board board) {
-		mapper.addBoard(board);
+	public void insert(Board board) {
+		mapper.insert(board);
 	}
 
 	@Override
-	public List<Board> allBoard() {
-		return mapper.allBoard();
+	public List<Board> selectAll() {
+		return mapper.selectAll();
 	}
 
 	@Override
-	public List<Board> searchBoard() {
-		return mapper.searchBoard();
+	public Board select(int no) {
+		return mapper.select(no);
 	}
 
 	@Override
-	public void updateBoard(Board board) {
-		mapper.updateBoard(board);
+	public void update(Board board) {
+		mapper.update(board);
 	}
 
 	@Override
-	public void deleteBoard(Board board) {
-		mapper.deleteBoard(board);
+	public void delete(int no) {
+		mapper.delete(no);
 	}
 	
 	

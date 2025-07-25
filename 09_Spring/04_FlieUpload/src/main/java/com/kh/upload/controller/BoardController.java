@@ -7,11 +7,15 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.upload.Service.BoardService;
+import com.kh.upload.dto.BoardDTO;
+import com.kh.upload.vo.Board;
 
 @Controller
 public class BoardController {
@@ -26,6 +30,7 @@ public class BoardController {
     
     @Autowired
     private BoardService service;
+    
     public String fileUpload(MultipartFile file)
     {
     	UUID uuid = UUID.randomUUID();
@@ -41,11 +46,12 @@ public class BoardController {
     }
     
     
-	@GetMapping("/")
-	public String index()
-	{
-		return "/index";
-	}
+    
+//	@GetMapping("/")
+//	public String index()
+//	{
+//		return "/index";
+//	}
 	@PostMapping("/upload")
 	public String upload(MultipartFile file)
 	{
@@ -73,8 +79,26 @@ public class BoardController {
 			for(MultipartFile li : file)
 			{
 				String fileName = fileUpload(li);
-				
 			}
+		return "redirect:/";
+	}
+	
+	@GetMapping("/")
+	public String list(Model model) {
+		
+		return "list";
+	}
+	
+	
+	@PostMapping("/write")
+	public String write(BoardDTO dto) {
+		String file = fileUpload(dto.getFile());
+		Board board = new Board();
+		board.setTitle(dto.getTitle());
+		board.setContent(dto.getContent());
+		board.setUrl(file);
+		service.insert(board);
+		System.out.println(board);
 		return "redirect:/";
 	}
 }

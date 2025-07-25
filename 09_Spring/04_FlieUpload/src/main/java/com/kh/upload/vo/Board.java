@@ -1,6 +1,7 @@
 package com.kh.upload.vo;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,5 +15,5 @@ public class Board {
 	private String title;
 	private String content;
 	private String url;
-	private LocalDate createdAt;
+	private LocalDateTime createdAt;
 }

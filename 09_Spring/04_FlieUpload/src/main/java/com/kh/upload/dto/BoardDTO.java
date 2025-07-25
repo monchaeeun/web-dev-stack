@@ -1,12 +1,15 @@
 package com.kh.upload.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
-@Getter
-@Setter
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data @NoArgsConstructor @AllArgsConstructor
 public class BoardDTO {
 
-	private String keyword;
-	private String type;
+	private String title;
+	private String content;
+	private MultipartFile file;
 }

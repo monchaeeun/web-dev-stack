@@ -9,9 +9,9 @@ import com.kh.upload.vo.Board;
 @Mapper
 public interface BoardMapper {
 
-	void addBoard(Board board);
-	List <Board> allBoard();
-	List <Board> searchBoard();
-	void updateBoard(Board board);
-	void deleteBoard(Board board);
+	void insert(Board board);
+	List <Board> selectAll();
+	Board select(int no);
+	void update(Board board);
+	void delete(int no);
 }
