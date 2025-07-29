@@ -23,7 +23,7 @@ WHERE NOT EXISTS(
 )
 </insert>
 
-<insert id="insert" parameterType="Board">
+<insert id="insert" parameterType="Board" useGeneratedKeys="true" keyProperty="no" keyColumn="no">
 INSERT INTO board(title,content,url)
 VALUES(#{title}, #{content},#{url})
 </insert>
@@ -42,7 +42,7 @@ OR content LIKE CONCAT('%',#{keyword},'%')
 </select>
 -->
 
-<select id="select" parameterType="int" resultType="Board">
+<select id="select" parameterType="int" resultMap="boardMap">
 SELECT * FROM board
 WHERE no = #{no}
 </select>
@@ -51,13 +51,13 @@ WHERE no = #{no}
 <update id="update" parameterType="Board">
 UPDATE board
 <set>
-<if test="title != null">
+<if test="title != null and title !=''">
 title = #{title},
 </if>
-<if test="content != null">
+<if test="content != null and content !=''">
 content = #{content},
 </if>
-<if test="url != null">
+<if test="url != null and url !='' ">
 url = #{url},
 </if>
 </set>

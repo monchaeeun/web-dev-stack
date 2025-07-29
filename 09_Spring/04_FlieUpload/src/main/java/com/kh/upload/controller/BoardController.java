@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.upload.Service.BoardService;
@@ -84,11 +85,12 @@ public class BoardController {
 	}
 	
 	@GetMapping("/")
-	public String list(Model model) {
-		
+	public String list(Model model) 
+	{
+		List<BoardDTO> list =  service.selectAll();
+		model.addAttribute("list",list);
 		return "list";
 	}
-	
 	
 	@PostMapping("/write")
 	public String write(BoardDTO dto) {
@@ -99,6 +101,32 @@ public class BoardController {
 		board.setUrl(file);
 		service.insert(board);
 		System.out.println(board);
-		return "redirect:/";
+		return "redirect:/view?no="+ board.getNo();
 	}
+	
+	
+	@GetMapping("/view")
+	public String view(int no, Model model) {
+	    Board board = service.select(no);
+	    model.addAttribute("board", board);
+	    return "view"; // → /WEB-INF/view.jsp로 이동
+	}
+	
+	@ResponseBody
+	@PostMapping("/update")
+	public String updateInfo(Board board)
+	{
+		service.update(board);
+		return "success";
+	}
+	
+	@ResponseBody
+	@PostMapping("/delete")
+	public String deleteInfo(int no)
+	{
+		service.delete(no);
+		return "success";
+	}
+	
+	
 }
