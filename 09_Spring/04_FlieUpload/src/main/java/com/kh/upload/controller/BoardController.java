@@ -14,13 +14,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.kh.upload.dto.PageDTO;
 import com.kh.upload.Service.BoardService;
 import com.kh.upload.dto.BoardDTO;
+import com.kh.upload.dto.PageDTO;
 import com.kh.upload.vo.Board;
 
 @Controller
 public class BoardController {
 
+	private String path =  "\\\\192.168.0.35\\upload\\";
     private final CustomErrorController customErrorController;
 
     
@@ -37,13 +40,22 @@ public class BoardController {
     	UUID uuid = UUID.randomUUID();
 		String fileName = uuid.toString() +"_"+ file.getOriginalFilename();
 		System.out.println(fileName);
-		File copyFile = new File("\\\\192.168.0.35\\upload\\"+ fileName);
+		File copyFile = new File(path+ fileName);
 		try {
 			file.transferTo(copyFile);
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
 		}
     	return fileName;
+    }
+    
+    //파일 삭제
+    public void deleteFile(int no)
+    {
+    	Board board = service.select(no);
+		String url = path + board.getUrl();
+		File file = new File(url);
+		file.delete();
     }
     
     
@@ -84,11 +96,12 @@ public class BoardController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("/")
-	public String list(Model model) 
+	@GetMapping("/list")
+	public String list(Model model, PageDTO paging) 
 	{
 		List<BoardDTO> list =  service.selectAll();
 		model.addAttribute("list",list);
+		model.addAttribute("paging", new PageDTO(paging.getPage(), service.total()));
 		return "list";
 	}
 	
@@ -100,7 +113,6 @@ public class BoardController {
 		board.setContent(dto.getContent());
 		board.setUrl(file);
 		service.insert(board);
-		System.out.println(board);
 		return "redirect:/view?no="+ board.getNo();
 	}
 	
@@ -114,18 +126,64 @@ public class BoardController {
 	
 	@ResponseBody
 	@PostMapping("/update")
-	public String updateInfo(Board board)
+	public int updateInfo(BoardDTO dto)
 	{
-		service.update(board);
-		return "success";
+		if(dto.getFile() == null 
+				&& dto.getTitle().equals("")
+				&& dto.getContent().equals(""))
+		{
+			System.out.println("해당 페이지가 없습니다.");
+			return -1;
+		}
+		
+		
+		//만약 파일이 있으면
+		if(!dto.getFile().isEmpty())
+		{
+			//파일 삭제
+			deleteFile(dto.getNo());
+			
+			String newUrl = fileUpload(dto.getFile());
+			dto.setUrl(newUrl);	
+		}
+		//파일 생성 및 정보 업데이트
+		int success= service.update(dto);
+		
+		if(success > 0)
+		{
+			return dto.getNo();			
+		}
+		return 0;
 	}
 	
 	@ResponseBody
 	@PostMapping("/delete")
-	public String deleteInfo(int no)
+	public int deleteInfo(int no)
 	{
+		deleteFile(no);
+		int success= service.delete(no);
+		if(success > 0)
+		{
+			return no;			
+		}
+		return 0;
+	}
+	
+	@GetMapping("/delete")
+	public String delete(int no)
+	{
+		deleteFile(no);
 		service.delete(no);
-		return "success";
+		return "redirect:/";
+	}
+	
+	@PostMapping("/search")
+	public String search(String keyword, Model model)
+	{
+		System.out.println("searchController");
+		List<BoardDTO> list = service.search(keyword);
+		model.addAttribute("list", list);
+		return "/list";
 	}
 	
 	

@@ -116,8 +116,6 @@
 			a{
 				text-decoration: none;
 				color:white;
-				padding: 5px;
-				border: 1px solid black;
 			}
 			
 			
@@ -169,12 +167,9 @@
 			formData.append("title", title);
 			formData.append("content", content);
 			
-			
 			if (file.files.length > 0) {
 					formData.append("file", file.files[0]); 
 				}
-				
-				
 			$.ajax({
 				type : "POST",
 				url : "/update",
@@ -182,22 +177,14 @@
 				processData: false,
 				contentType: false,
 				success: function (result) {
-				if (parseInt(result) > 0) {
+				if (result === "success") {
 					alert("해당정보가 수정되었습니다.");
-					location.href = "/view?no="+ result;
-				} else if(parseInt(result) == -1){
-					alert("수정할 정보가 존재하지 않습니다.");
-					location.href = "/view?no="+ no;
-				}
-				else
-				{
+					location.href = "/";
+				} else {
 					alert("수정할 수 없습니다.");
-					location.href = "/view?no="+ no;
+					location.href = "/";
 				}	
 			  },
-			  error: function (xhr) {
-			              alert("오류 발생: " + xhr.status);
-			          }
 			});
 			
 		})
@@ -213,11 +200,10 @@
 				processData: false,
 				contentType: false,
 				success: function (result) {
-				if (parseInt(result) > 0) {
-					alert("해당 파일이 삭제되었습니다.");
-					location.href = "/view?no="+ result;
+				if (result === "success") {
+					alert("해당정보가 삭제되었습니다.");
+					location.href = "/";
 				} else {
-					
 					alert("삭제할 수 없습니다.");
 					location.href = "/";
 				}	

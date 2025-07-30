@@ -17,6 +17,10 @@
 	<!-- list.jsp-->
 	<div class="container">
 		<h1>List Page</h1>
+		<form action="/search" method="post">
+		<input type="text" id="keyword" name ="keyword" placeholder="search">
+		<input type="submit" class="btn btn-success" value="검색"/>
+		</form>
 		<table class="table">
 			<thead>
 				<tr>
