@@ -99,9 +99,9 @@ public class BoardController {
 	@GetMapping("/list")
 	public String list(Model model, PageDTO paging) 
 	{
-		List<BoardDTO> list =  service.selectAll();
+		List<BoardDTO> list =  service.showBoard(paging);
 		model.addAttribute("list",list);
-		model.addAttribute("paging", new PageDTO(paging.getPage(), service.total()));
+		model.addAttribute("paging", new PageDTO(paging.getPage(), service.total(), paging.getKeyword()));
 		return "list";
 	}
 	
@@ -178,11 +178,30 @@ public class BoardController {
 	}
 	
 	@PostMapping("/search")
-	public String search(String keyword, Model model)
+	public String search(Model model,PageDTO paging)
 	{
-		System.out.println("searchController");
-		List<BoardDTO> list = service.search(keyword);
+		List<BoardDTO> list = service.search(paging);
+		if(paging.getKeyword().trim().isEmpty()|| paging.getKeyword() == null)
+		{
+			return "redirect:/list";
+		}
+		int total = service.searchTotal(paging.getKeyword());
 		model.addAttribute("list", list);
+		model.addAttribute("paging", new PageDTO(paging.getPage(), total, paging.getKeyword()));
+		return "/list";
+	}
+	
+	@GetMapping("/search")
+	public String searchPage(Model model,PageDTO paging)
+	{
+		List<BoardDTO> list = service.search(paging);
+		if(paging.getKeyword().trim().isEmpty()|| paging.getKeyword() == null)
+		{
+			return "redirect:/list";
+		}
+		int total = service.searchTotal(paging.getKeyword());
+		model.addAttribute("list", list);
+		model.addAttribute("paging", new PageDTO(paging.getPage(), total, paging.getKeyword()));
 		return "/list";
 	}
 	

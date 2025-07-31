@@ -42,10 +42,11 @@ OR content LIKE CONCAT('%',#{keyword},'%')
 </select>
 -->
 
-<select id="search" parameterType="String" resultMap="boardMap">
+<select id="search" parameterType="PageDTO" resultMap="boardMap">
 SELECT * FROM board
 WHERE title LIKE CONCAT('%', #{keyword},'%')
 OR content LIKE CONCAT('%',#{keyword},'%')
+LIMIT #{offset}, #{limit}
 </select>
 
 
@@ -78,11 +79,8 @@ DELETE FROM board
 WHERE no = #{no}
 </delete>
 
-<select id="showBoard" resultType="BoardDTO">
-SELECT * FROM film_text
-</select>
 
-<select id="showBoard1" parameterType="PageDTO" resultMap="BoardDTO">
+<select id="showBoard" parameterType="PageDTO" resultMap="boardMap">
 SELECT * FROM board LIMIT #{offset}, #{limit}
 </select>
 
@@ -90,10 +88,10 @@ SELECT * FROM board LIMIT #{offset}, #{limit}
 SELECT count(*) FROM board 
 </select>
 
-
-
-
-
-
+<select id="searchTotal" parameterType="string" resultType="int">
+  SELECT COUNT(*) FROM board
+  WHERE title LIKE CONCAT('%', #{keyword}, '%')
+     OR content LIKE CONCAT('%', #{keyword}, '%')
+</select>
 
 </mapper>

@@ -17,7 +17,8 @@
 	<!-- list.jsp-->
 	<div class="container">
 		<h1>List Page</h1>
-		<form action="/search" method="post">
+		<form action="/search" method="get">
+			<input type="hidden" name="page" value="1" />
 		<input type="text" id="keyword" name ="keyword" placeholder="search">
 		<input type="submit" class="btn btn-success" value="검색"/>
 		</form>
@@ -38,6 +39,16 @@
 					</c:forEach>
 		</table>	
 	<button type="button"class="btn btn-success" data-bs-toggle="modal" data-bs-target="#writeModal">추가</button>
+	<nav>
+					<ul class="pagination">
+						<li class="page-item ${paging.prev ? '' : 'disabled'}"><a class="page-link" href="/list?page=${paging.startPage - 1}&keyword=${param.keyword}">Previous</a></li>
+									
+						<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="page">
+								<li class="page-item"><a class="page-link ${paging.page == page ? 'active' : ''}" href="/list?page=${page}">${page}</a></li>
+						</c:forEach>			
+						<li class="page-item ${paging.next ? '' : 'disabled'}"><a class="page-link" href="/list?page=${paging.endPage + 1}&keyword=${param.keyword}">Next</a></li>
+					</ul>
+	</nav>
 
 	<!-- Modal -->
 	<div class="modal fade" id="writeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
