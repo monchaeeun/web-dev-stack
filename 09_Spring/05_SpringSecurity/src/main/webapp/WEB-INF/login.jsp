@@ -9,9 +9,6 @@
 	<meta charset="UTF-8">
 		<title>login 페이지</title>
 		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-		
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 	</head>
 	<style>
 	       body {
@@ -58,15 +55,37 @@
 	   </style>
 
 	<body>
-		<form action = "/login" method="post">
+		<form action = "/login" method="post" id="frm">
 			<h3>로그인</h3>
 			<p>아이디 입력</p>
-			<input type="text" name="username" id="id" placeholder="아이디를 입력하세요"><br>
+			<input type="text" name="id" id="id" placeholder="아이디를 입력하세요"><br>
 			<p>비밀번호 입력</p>
-			<input type="password" name="password" id="pwd" placeholder="비밀번호를 입력하세요"><br>
-			<input type="submit" value="확인">
+			<input type="password" name="pwd" id="pwd" placeholder="비밀번호를 입력하세요"><br>
+			<button type="submit" id="login">로그인</button>
 		</form>
-	
+		
+	<script>
+			$("#login").click((e) =>{
+				e.preventDefault();// 기존 이벤트 제거
+			
+				$.ajax({
+					type : "post",
+					url: "/login",
+					data : $("#frm").serialize(),
+					success: function(data){
+						alert(data);
+						//localStorage에 token 키 값으로 저장
+						localStorage.setItem("token", data);
+						// <- index.jsp로 이동
+						location.href = "/main";
+				},
+					error : function(){
+						alert("에러 발생");
+					}
+				})
+			})
+			
+	</script>
 	</body>
 	
 </html>

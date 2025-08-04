@@ -12,7 +12,7 @@ import com.kh.security.mapper.UserMapper;
 import com.kh.security.vo.User;
 
 @Service
-public class UserService implements UserDetailsService{
+public class UserService{
 
 	@Autowired
 	private UserMapper userMapper;
@@ -31,16 +31,28 @@ public class UserService implements UserDetailsService{
 		else{
 			user.setRole("ROLE_USER");
 		}
-		user.setPwd(bcpe.encode(user.getPwd()));
+		//user.setPwd(bcpe.encode(user.getPwd()));
 		userMapper.addUser(user);
 		System.out.println(user);
 	}
 
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userMapper.loginUser(username);
-		return user;
+	public User loginUser(User user)
+	{
+		User vo = userMapper.loginUser(user.getId());
+		
+		if(vo!=null && bcpe.matches(user.getPwd(), vo.getPwd()))
+		{
+			System.out.println("Service : " + vo);
+			return vo;
+		}
+		return null;
 	}
+//	@Override
+//	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//		User user = userMapper.loginUser(username);
+//		System.out.println(user);
+//		return user;
+//	}
 
 
 

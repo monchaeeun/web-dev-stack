@@ -6,7 +6,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kh.security.config.TokenProvider;
 import com.kh.security.service.UserService;
 import com.kh.security.vo.User;
 
@@ -18,6 +20,8 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private TokenProvider tokenProvider;
 	//페이지 이동
 	@GetMapping("/index")
 	public void index() {}
@@ -34,7 +38,7 @@ public class UserController {
 
 	@GetMapping("/admin")
 	public void admin() {
-		
+		//로그인 정보 저장
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = (User) auth.getPrincipal();
 		System.out.println(user);
@@ -43,7 +47,7 @@ public class UserController {
 	
 	//기능
 	@PostMapping("/register")
-	public String addUser(User user,HttpServletRequest requect)
+	public String addUser(User user)
 	{
 		User check = userService.idCheck(user);
 		if(check != null)
@@ -53,23 +57,27 @@ public class UserController {
 		}
 		userService.addUser(user);
 		System.out.println("회원가입이 완료되었습니다.");
-		HttpSession session = requect.getSession();
-		session.removeAttribute("user");
 		return "redirect:/login";
 	}
 	
+	@ResponseBody
 	@PostMapping("/login")
-	public String loginUser(User user,HttpServletRequest requect)
+	public String loginUser(User user)
 	{
-		HttpSession session = requect.getSession();
-		User getUser = userService.idCheck(user);
-		session.setAttribute("user", getUser);
-//		if(check== null)
-//		{
-//			System.out.println("아이디나 비밀번호가 틀렸습니다.");
-//		}
-//		
-//		session.setAttribute("user", check);
-		return "redirect:/mypage";
+		System.out.println("controller  : "+user);
+		User vo = userService.loginUser(user);
+		System.out.println("service에서 받은 값 : "+ vo);
+		if(vo != null)
+		{
+			//로그인 성공 -> 서버는 토큰 생성만, 값을 가지고 있는건 클라이언트
+			//클라이언트 토큰에 저장
+			
+			//token null 오류
+			String token = tokenProvider.create(vo);
+			System.out.println("token에 넣은 값 : "+ token);
+			return token;
+			
+		}
+		return null;
 	}
 }

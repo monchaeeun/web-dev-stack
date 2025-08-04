@@ -69,11 +69,12 @@
 		<!--get, /admin : 관리자만 들어오는 페이지-->
 			<h3>관리자 페이지</h3>
 			<div>
-				<p>아이디  ${user.id}</p><br><br>
-				<p>비밀번호 ${user.pwd}</p><br><br>
-				<p>이름 ${user.name}</p><br><br>
-				<p>권한  ${user.role}</p><br><br>
+				<p id = "id">아이디  ${user.id}</p><br><br>
+				<p id = "pwd">비밀번호 ${user.pwd}</p><br><br>
+				<p id = "name">이름 ${user.name}</p><br><br>
+				<p id = "role">권한  ${user.role}</p><br><br>
 				</div>
+		
 	</body>
 	
 </html>	
