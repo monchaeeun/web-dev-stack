@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <title>텍스트태그</title>
     <style>
         p
@@ -78,11 +79,47 @@
       <hr>
       이메일 : <span>${member.name}</span><br>
       
-      <button type="submit" value="updateInfo">회원 정보 수정</button>
-	    <button type="button"value="updateInfo" id="updateInfo">내 정보 수정</button>
-      <input type="hidden" name="">
+      <input type="date" name="startDate" id="startDate">
+      <input type="date" name="endDate" id="endDate">
 
+      <button type="button" id="submit">등록</button>
 
+     
+
+      <script>
+
+        $("#submit").click(() => {
+          const startDate = $("#startDate").val();
+          const endDate = $("#endDate").val();
+
+          const formData = new FormData();
+
+          formData.append("startDate",startDate);
+          formData.append("endDate", endDate);
+
+          $.ajax({
+            type: "POST",
+	  	      url: "/vacation",
+	  	      data: formData,
+	  	      processData: false,
+	  	      contentType: false,
+	  	      success: function (result) {
+	  	        if (result === "success") {
+	  	          alert("휴가 등록이 완료되었습니다!");
+	  	          location.href = "/main";
+	  	        } else if (result === "fail") {
+	  	          alert("휴가 등록을 할 수 없습니다.");
+	  	        } else {
+	  	          alert("알 수 없는 오류");
+	  	        }
+	  	      },
+	  	      error: function () {
+	  	        alert("서버 오류 발생");
+	  	      },
+          })
+        })
+
+      </script>
 
   </body>
 </html>

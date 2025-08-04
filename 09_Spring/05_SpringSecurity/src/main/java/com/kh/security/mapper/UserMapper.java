@@ -9,5 +9,5 @@ public interface UserMapper {
 
 	User idCheck(User user);
 	void addUser(User user);
-	User loginUser(User user);
+	User loginUser(String id);
 }

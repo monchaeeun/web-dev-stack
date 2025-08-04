@@ -8,7 +8,7 @@ WHERE id = #{id}
 </select>
 
 <insert id="addUser" parameterType="User">
-INSERT INTO user(id, pwd, name,role)
+INSERT INTO user(id, pwd, name, role)
 VALUES(#{id},#{pwd}, #{name}, #{role})
 </insert>
 

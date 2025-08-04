@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,8 +72,17 @@
 	<p>권한 확인 : ${user.role}</p><br><br>
 	</div>
 	<b>
-	<button type="button" onclick="location.href='/register'">회원가입</button>
+		<sec:authorize access="isAnonymous()">
 	<button type="button" onclick="location.href='/login'">로그인</button>
+	<button type="button" onclick="location.href='/register'">회원가입</button>
+	</sec:authorize>
+	<sec:authorize access="isAuthenticated()">
+	<button type="button" onclick="location.href='/logout'">로그아웃</button>
+	<button type="button" onclick="location.href='/mypage'">마이 페이지</button>
+	</sec:authorize>
+	<sec:authorize access="hasRole('ADMIN')">
+	<button type="button" onclick="location.href='/admin'">관리자 페이지</button>
+	</sec:authorize>
 	</b>
 </body>
 	

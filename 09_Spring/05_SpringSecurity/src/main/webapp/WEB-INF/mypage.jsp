@@ -2,15 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
-		<title>login 페이지</title>
-		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-		
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+		<title>마이 페이지</title>
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>		
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 	</head>
 	<style>
@@ -19,6 +17,7 @@
 	           padding: 0;
 	           height: 100vh;
 	           display: flex;
+			   flex-direction: column;
 	           justify-content: center;
 	           align-items: center;
 	           background-color: #f2f2f2;
@@ -30,6 +29,13 @@
 	           border-radius: 8px;
 	           box-shadow: 0 0 10px rgba(0,0,0,0.1);
 	       }
+		   div {
+		           background-color: #fff;
+		           padding: 30px 40px;
+		           border-radius: 10px;
+		           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+		           text-align: center;
+		       }
 
 	       input[type="text"], input[type="password"] {
 	           width: 100%;
@@ -55,18 +61,16 @@
 	       h3, p {
 	           margin-bottom: 10px;
 	       }
+		   p{
+			text-align : left;
+		   }
 	   </style>
-
 	<body>
-		<form action = "/login" method="post">
-			<h3>로그인</h3>
-			<p>아이디 입력</p>
-			<input type="text" name="username" id="id" placeholder="아이디를 입력하세요"><br>
-			<p>비밀번호 입력</p>
-			<input type="password" name="password" id="pwd" placeholder="비밀번호를 입력하세요"><br>
-			<input type="submit" value="확인">
-		</form>
-	
+			<h3>마이 페이지</h3>
+			<div>
+				<p><sec:authentication property="principal.name"/>님의 페이지 입니다.</p><br><br>
+				<p><sec:authentication property="principal.role"/> 권한</p><br><br>
+			</div>
 	</body>
 	
-</html>
+</html>	

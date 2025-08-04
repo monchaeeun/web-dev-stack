@@ -57,16 +57,15 @@
 	<body>
 		<form action = "/register" method="post">
 			<h3>회원가입</h3>
-					<p>아이디 입력</p>
-					<input type="text" name="id" id="id" placeholder="아이디를 입력하세요"><br>
-					<p>비밀번호 입력</p>
-					<input type="password" name="pwd" id="pwd" placeholder="비밀번호를 입력하세요"><br>
-					<p>이름 입력</p>
-					<input type="text" name="name" id="name" placeholder="이름을 입력하세요"><br>
-					<p>권한 입력</p>
-					<input type="text" name="role" id="role" placeholder="권한을 입력하세요"><br>
-					<input type="submit" value="확인">
-				</form>
+				<p>아이디 입력</p>
+				<input type="text" name="id" id="id" placeholder="아이디를 입력하세요"><br>
+				<p>비밀번호 입력</p>
+				<input type="password" name="pwd" id="pwd" placeholder="비밀번호를 입력하세요"><br>
+				<p>이름 입력</p>
+				<input type="text" name="name" id="name" placeholder="이름을 입력하세요"><br>
+				
+				<input type="submit" value="확인">
+		</form>
 	
 	</body>
 	
