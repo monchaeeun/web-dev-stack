@@ -39,9 +39,9 @@ SELECT
     INSTR('AABAACAABBAA', 'D')--D가 없어서 0
 FROM DUAL;    
 
---USER_INFO에서 각 전화번호(CONTACT)에서 앞에서부터 5가 들어간 위치 조회
-SELECT CONTACT,  
-INSTR(CONTACT, '5')
+--USER_INFO에서 각  생일날짜(BIRTHDATE)에서 앞에서부터 5가 들어간 위치 조회
+SELECT BIRTHDATE,  
+INSTR(BIRTHDATE, '5')
 FROM USER_INFO;
 --EMPLOYEE 에서 's'가 포함되어있는 이메일중 @ 위치 조회
 SELECT EMAIL,
@@ -298,7 +298,7 @@ FROM USER_INFO;
     TO_CHAR(날짜/숫자, 포맷)
     -날짜 또는 숫자형 데이터를 문자 타입으로 변환
 */
-SELECT TO_CHAR(1234,'L99,999') FROM DUAL; --L99999 : 현재 설성된 화폐단위
+SELECT TO_CHAR(1234,'L99,999') FROM DUAL; --L99999 : 현재 설정된 화폐단위
 ALTER SESSION SET NLS_CURRENCY = '\';
 ALTER SESSION SET NLS_CURRENCY = '$';
 
@@ -380,6 +380,7 @@ SELECT EMP_NAME,
 NVL2(DEPT_CODE,'부서있음','부서없음')"부서"
 FROM EMPLOYEE;
 
+
 /*
     NULLIF(값1, 값2)
     -2개의 값이 동일하면 NULL, 동일하지 않으면 값1
@@ -419,7 +420,7 @@ FROM EMPLOYEE;
 
 
 
---직급 코드가 j7인 사원응ㄴ 급여를 10%인상
+--직급 코드가 j7인 사원의 급여를 10%인상
 --직급코드가 j6인 사원은 급여를 15%인상
 --직급 코드가 j5인 사원은 급여를 20%인상
 --그 외 직급 사원은 급여를 5%인상
@@ -722,7 +723,8 @@ GROUP BY DEPT_CODE
 UNION ALL
 SELECT JOB_CODE, COUNT(*)
 FROM EMPLOYEE
-GROUP BY JOB_CODE;
+GROUP BY JOB_CODE
+ORDER BY dept_code;
 
 --다른 방법
 SELECT DEPT_CODE, COUNT(*)

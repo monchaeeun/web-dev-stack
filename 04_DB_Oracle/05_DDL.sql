@@ -69,6 +69,7 @@ SELECT * FROM USER_TAB_COLUMNS;
     
     COMMENT ON COLUMN 테이블명.컬럼명 IS '내용';
 */
+
 COMMENT ON COLUMN MEMBER.MEM_ID IS '회원번호';
 --테이블에 데이터 추가시키는 구문 (DML  : INSERT)
 --INSERT INTO 테이블명 VALUES(값,값,값,...);
@@ -127,7 +128,6 @@ SELECT * FROM MEM_NOTNULL;
 */
 
 CREATE TABLE MEM_UNIQUE(
-
     MEM_NO NUMBER NOT NULL, 
     MEM_ID VARCHAR2(20) NOT NULL UNIQUE,
     MEM_PWD VARCHAR2(20) NOT NULL,
@@ -136,14 +136,14 @@ CREATE TABLE MEM_UNIQUE(
     PHONE VARCHAR2(13),
     EMAIL VARCHAR(50)UNIQUE,
     MEM_DATE DATE NOT NULL
-
 );
 INSERT INTO MEM_UNIQUE VALUES(1,'user01','pass01','윤의진', '남','010-1111-2222','aaa@naver.com','25/06/05');
 INSERT INTO MEM_UNIQUE VALUES(2,'user02','pass02','채은', '여','010-0000-0000','bbb@naver.com','02/05/20');
 INSERT INTO MEM_UNIQUE(MEM_NO, MEM_ID,MEM_PWD,MEM_NAME,MEM_DATE) VALUES(3,'user02','pass02','이진용',SYSDATE);
 INSERT INTO MEM_UNIQUE(MEM_NO, MEM_ID,MEM_PWD,MEM_NAME,GENDER,MEM_DATE) VALUES(3,'user03','pass03','곽병현', 'ㅇ',SYSDATE);
 
-/*  CHECK(조건식)WPDOR WHRJS
+/*  
+CHECK(조건식)WPDOR WHRJS
     -해당 컬럼에 들어올 수 있는 값에 대한 조건을 제시해볼 수 있음!
     -해당 조건에 만족하는 데이터값만 담길 수 있음
 */

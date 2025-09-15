@@ -73,11 +73,10 @@
 					url: "/login",
 					data : $("#frm").serialize(),
 					success: function(data){
-						alert(data);
 						//localStorage에 token 키 값으로 저장
 						localStorage.setItem("token", data);
 						// <- index.jsp로 이동
-						location.href = "/main";
+						location.href = "/";
 				},
 					error : function(){
 						alert("에러 발생");

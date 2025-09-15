@@ -3,6 +3,10 @@ package com.kh.security.config;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AbstractAuthenticationToken;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -26,20 +30,21 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 		
 		//클라이언트에서 보낸 토큰을 받아서 사용자 확인 후 인증 처리
 		String token = parseBearerToken(request);
-		System.out.println(token);
 		
-		if(token!= null && !token.equalsIgnoreCase("null"))
-		{
+		if(token!= null && !token.equalsIgnoreCase("null")){
 			User user = tokenProvider.validate(token);
-			System.out.println("doFilterInternal : " + user);
-		}
+			
+			// 추출된 인증 정보를 필터링해서 사용할 수 있도록 SecurityContext 등록
+			AbstractAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+			authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+			SecurityContextHolder.getContext().setAuthentication(authentication);
 		
+		}
 		filterChain.doFilter(request, response);
 	}
 	
 	//값을 받는 메서드
 	private String parseBearerToken(HttpServletRequest request){
-		
 		String bearerToken =  request.getHeader("Authorization");
 		if(StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer"))
 		{

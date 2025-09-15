@@ -68,8 +68,7 @@
 	<body>
 			<h3>마이 페이지</h3>
 			<div>
-				<p><sec:authentication property="principal.name"/>님의 페이지 입니다.</p><br><br>
-				<p><sec:authentication property="principal.role"/> 권한</p><br><br>
+				<p><sec:authentication property="name"/>님의 페이지 입니다.</p><br><br>
 			</div>
 	</body>
 	

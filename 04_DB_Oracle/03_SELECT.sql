@@ -63,11 +63,11 @@ SELECT EMP_NAME, EMAIL FROM EMPLOYEE;
 이때 컬럼명에 별칭을 부여하면 깔끔하게 보일 수 있다.
 컬럼 AS 별칭/ 컬럼 AS "별칭"/ 컬럼 별칭/ 컬럼"별칭"
 */
---USER_INFO에서 나이(AGE)에 20년 후를 계산
+--USER_INFO에서 나이(AGE)에 10년  전을 계산
 SELECT 
 NAME 이름,
 AGE 나이,
-AGE-10 AS "10년 후"
+AGE-10 AS "10년 전"
 FROM USER_INFO;
 SELECT * FROM USER_INFO;
 --EMPLOYEE에서 직원명(EMP_NAME), 월급(SALARY), 연봉 조회

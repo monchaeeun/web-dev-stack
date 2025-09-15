@@ -38,7 +38,7 @@ DECLARE
 
 BEGIN
 EID:= &번호;
-WNAMW := '&이름';
+ENAME := '&이름';
 DBMS_OUTPUT.PUT_LINE('EID : ' || EID);
 DBMS_OUTPUT.PUT_LINE('ENAME : ' || ENAME);
 DBMS_OUTPUT.PUT_LINE('PI : ' || PI);
@@ -128,6 +128,8 @@ END IF;
 DBMS_OUTPUT.PUT_LINE('보너스는 '|| EMP.BONUS);
 END;
 /
+
+select * from employee;
 --보너스가 있는 경우만 보너스 출력, 없으면 해당 문구 출력
 /*
 IF 조건식 THEN 실행내용

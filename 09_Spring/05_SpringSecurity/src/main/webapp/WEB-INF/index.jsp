@@ -9,46 +9,95 @@
 	<meta charset="UTF-8">
 		<title>index 페이지</title>
 		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-		
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 	</head>
 
 	<body>
 	<div>
-	<p>아이디 확인 : ${user.id}</p><br><br>
-	<p>비밀번호 확인 : ${user.pwd}</p><br><br>
-	<p>이름 확인 : ${user.name}</p><br><br>
-	<p>권한 확인 : ${user.role}</p><br><br>
-	</div>
-	<b>
-	<div id = "anonymous" style="desplay:none;">
+	
 	<sec:authorize access="isAnonymous()">
-		<button type="button" onclick="location.href='/login'">로그인</button>
-		<button type="button" onclick="location.href='/register'">회원가입</button>
 	</sec:authorize>
-	</div>
-	<div id = "authenticated" style="desplay:none;">
+	
 	<sec:authorize access="isAuthenticated()">
-		<button type="button" onclick="location.href='/logout'">로그아웃</button>
-		<button type="button" onclick="location.href='/mypage'">마이 페이지</button>
 	</sec:authorize>
 	
 	<sec:authorize access="hasRole('ADMIN')">
-		<button type="button" onclick="location.href='/admin'">관리자 페이지</button>
 	</sec:authorize>
+	<b>
+	<div id = "anonymous">
+		<button type="button" onclick="location.href='/login'">로그인</button><br>
+		<button type="button" onclick="location.href='/register'">회원가입</button><br>
 	</div>
+	<div id = "authenticated">
+		<button type="button" onclick="location.href='/logout'" id="logout">로그아웃</button><br>
+		<button type="button" onclick="location.href='/mypage'" id="mypage">마이 페이지</button><br>
+	</div>
+	<div id = "admin">
+		<button type="button" onclick="location.href='/admin'">관리자 페이지</button><br>
+		</div>
 	</b>
 	
 	<script>
 			const token = localStorage.getItem("token");
 			if(token !== null)
 			{
+			$("#authenticated").show();
+			$("#anonymous").hide();
+			$("#admin").hide();
+			
+			
+			$.ajax({
 				
+				url:'/check',
+				type: 'get',
+				data:{token : token},
+				success:function(data)
+				{
+					const role = data.role;
+
+					if(role === 'ROLE_ADMIN'){
+						$("#admin").show();
+					}	
+					else{
+						$("#admin").hide();
+					}	
+				}
+			})
 			}else{
 				$("#anonymous").show();
+				$("#authenticated").hide();
+				$("#admin").hide();
 			}
 			
+			$("#logout").click(()=>{
+				localStorage.removeItem("token");
+				location.href = "/";
+			})
+			
+			$("#mypage").click(()=>{
+				$.ajax({
+					url:'/mypage',
+					type:'get',
+					beforeSend: function(xhr){
+						xhr.setRequestHeader('Authorization', 'Bearer '+token);
+					},
+					success: function(data){
+						$('body').html(data);
+					}
+				})
+			})	
+			
+			$("#admin").click(()=> {
+				$.ajax({
+				url:'/admin',
+				type:'get',
+				beforeSend: function(xhr){
+				xhr.setRequestHeader('Authorization','Bearer '+token);
+				},
+				success: function(data){
+					$('body').html(data);
+				}
+			})	
+		})
 			</script>	
 </body>
 	

@@ -22,16 +22,13 @@ import com.kh.upload.vo.Board;
 
 @Controller
 public class BoardController {
+	private final CustomErrorController customErrorController;
+	BoardController(CustomErrorController customErrorController) {
+		this.customErrorController = customErrorController;
+	}
 
 	private String path =  "\\\\192.168.0.35\\upload\\";
-    private final CustomErrorController customErrorController;
-
-    
-    
-    BoardController(CustomErrorController customErrorController) {
-        this.customErrorController = customErrorController;
-    }
-    
+	
     @Autowired
     private BoardService service;
     

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>테스트 전용</title>
+  </head>
+  <body>
+   <h1>발주 수정</h1>
+
+<form action="/updatePrintOrder" method="post" id="updateOrder">
+  <input type="hidden" name="orderNo" value="${po.orderNo}" required/>
+
+  <c:forEach var="detail" items="${po.detailList}" varStatus="status">
+     <div>
+       <input type="hidden" name="detailList[${status.index}].bookNo" value="${detail.bookNo}" required/>
+
+       <label>제품명:</label>
+       <input type="text" name="detailList[${status.index}].productName" value="${detail.productName}" required/><br>
+
+       <label>발주 수량:</label>
+       <input type="number" name="detailList[${status.index}].quantity" value="${detail.quantity}" min="0" required/><br>
+
+       <label>홍보 수량:</label>
+       <input type="number" name="detailList[${status.index}].promotionQuantity" value="${detail.promotionQuantity} "min="0" required/><br>
+     </div>
+   </c:forEach>
+
+  <div>
+    <label>담당자:</label>
+    <input type="text" name="manager" value="${po.manager}" required/><br>
+
+    <label>발행일자:</label>
+    <input type="date" name="issueDate" value="${po.issueDate}" required/><br>
+
+    <label>납품일자:</label>
+    <input type="date" name="deliveryDate" value="${po.deliveryDate}" required/><br>
+  </div>
+
+  <button type="submit" id="update">수정</button>
+  <button type="button" onclick="location.href='/allPrintOrder'">취소</button>
+</form>
+  </body>
+
+  <script>
+    $("#update").click((e)=>{
+      e.preventDefault();
+    const formData = $("#updateOrder").serialize(); 
+
+    $.ajax({
+      url: "/updatePrintOrder",  // ← 여기에 실제 전송할 URL을 입력
+      method: "POST",
+      data: formData,
+      success: function(result) 
+      {
+        if(result == "success")
+      {
+        alert("성공적으로 수정되었습니다!");
+        location.href = "";
+      }
+      else if(result == "fail")
+      {
+        alert("수정 실패");
+      }
+      },
+      error: function(xhr, status, error) {
+        alert("에러 발생: " + error);
+      }
+    });
+  });
+  </script>
+</html>

@@ -25,15 +25,16 @@ public class UserService{
 	}
 
 	public void addUser(User user) {
+		
+		user.setPwd(bcpe.encode(user.getPassword()));
+		
 		if(user.getId().equals("admin")){
 			user.setRole("ROLE_ADMIN");
 		}
 		else{
 			user.setRole("ROLE_USER");
 		}
-		//user.setPwd(bcpe.encode(user.getPwd()));
 		userMapper.addUser(user);
-		System.out.println(user);
 	}
 
 	public User loginUser(User user)
@@ -47,6 +48,7 @@ public class UserService{
 		}
 		return null;
 	}
+	
 //	@Override
 //	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 //		User user = userMapper.loginUser(username);

@@ -41,7 +41,6 @@ public class UserController {
 		//로그인 정보 저장
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = (User) auth.getPrincipal();
-		System.out.println(user);
 	}
 
 	
@@ -70,14 +69,19 @@ public class UserController {
 		if(vo != null)
 		{
 			//로그인 성공 -> 서버는 토큰 생성만, 값을 가지고 있는건 클라이언트
-			//클라이언트 토큰에 저장
 			
-			//token null 오류
+			//클라이언트 토큰에 저장
 			String token = tokenProvider.create(vo);
 			System.out.println("token에 넣은 값 : "+ token);
 			return token;
-			
 		}
 		return null;
+	}
+	
+	@ResponseBody
+	@GetMapping("/check")
+	public User check(String token)
+	{
+		return tokenProvider.validate(token);
 	}
 }
