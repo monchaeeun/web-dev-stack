@@ -331,4 +331,241 @@ ROUND(AVG(AGE),2)
 FROM USER_INFO
 GROUP BY MBTI
 HAVING AVG(AGE) <= 30;
+/*----------------------------------------------------------------------------*/
+
+--학생 정보 관리 테이블
+create sequence seq_sungtb_no;
+
+create table sungtb(
+no Number(3) primary key,
+name varchar2(50),
+kor number(3),
+eng number(3),
+mat number(3)
+);
+
+--샘플 데이터
+insert into sungtb values(seq_sungtb_no.nextVal, '문채은', 87,88,65);
+
+select * from system.sungtb;
+select * from sungtb;
+insert into system.sungtb values(seq_sungtb_no.nextVal,'이름',100,90,80);
+
+delete from sungtb where no = 3;
+
+commit;
+
+create table dept(
+    deptNo number(2) primary key,
+    dname varchar2(20),
+    loc varchar2(20)
+);
+select * from system.dept;
+
+create sequence seq_member_no;
+
+create table member(
+    idx number(2) primary key,
+    name varchar2(20),
+    id varchar2(20),
+    pwd varchar2(20),
+    email varchar2(50),
+    addr varchar2(50)
+);
+insert into member values(seq_member_no.nextVal,'감자','rkawk','1234','gamza@gmail.com', '감자밭');
+insert into system.member values(seq_member_no.nextVal,'테스트01','test01','1234','email.com', '지구');
+
+select * from member;
+
+create sequence seq_member_idx;
+drop table member;
+
+alter table member modify pwd varchar2(100);
+
+create table member(
+   idx number(3) primary key, 
+   name VARCHAR2(50), 
+   id varchar2(50), 
+   pwd varchar2(50), 
+   email varchar2(100), 
+   addr varchar2(200)   
+);
+
+insert into member values(
+   seq_member_idx.nextVal, 
+   '홍길동', 
+   'one', 
+   '1234', 
+   'one@korea.com', 
+   '서울시 은평구'
+);
+
+
+drop table dept;
+create table dept(
+   deptno number(2) primary key, 
+   dname varchar2(20), 
+   loc varchar2(20)
+);
+
+insert into dept values( 50, '경리부', '505' );
+commit;
+
+
+--학생 정보관리 테이블
+create sequence seq_sungtb_no;
+
+drop SEQUENCE seq_sungtb_no;
+drop table sungtb;
+
+create table sungtb(
+   no Number(3) primary key, 
+   name varchar2( 50 ), 
+   kor number(3), 
+   eng number(3), 
+   mat number(3)
+);
+
+--샘플데이터
+insert into sungtb values( 
+   seq_sungtb_no.nextVal, 
+   '일길동', 
+   77, 88, 99
+);
+
+commit;
+
+create sequence seq_pro_idx;
+
+--상품 테이블
+create table product(
+	idx number(3) primary key,
+	category varchar2(80),
+	p_num varchar2(100) unique,
+	p_name varchar2(200),
+	p_company varchar2(100),
+	p_price number(10),
+	p_saleprice number(10),
+	p_image_s varchar2(255),
+	p_image_l varchar2(255),
+	p_content CLOB,
+	p_date date
+);
+
+select * from product;
+
+--샘플 테이터
+
+select * from product;
+insert into product values(
+seq_pro_idx.nextVal,
+'sp003',
+'RC-113',
+'인사인 스케이트',
+'apple',
+50000,
+35000,
+'pds1.jpg',
+'pds1_z.jpg',
+'바이오맥스 통풍 나잉온 재질 인라인',
+sysdate);
+
+insert into product values(
+seq_pro_idx.nextVal,
+'ele002',
+'vcx-123',
+'브라운관 tv',
+'sony',
+990000,
+870000,
+'pds4.jpg',
+'pds4_z.jpg',
+'레트로 장비 티비 모니터 소품 브라운관 TV 아날로그',
+sysdate);
+
+update product set
+p_name = '인라인 스케이트'
+where idx = 1;
+commit;
+
+create sequence seq_cart_idx;
+
+select * from dept;
+delete from dept;
+
+create sequence seq_visit_idx;
+create table visit(
+    idx number(3) primary key,
+    name varchar2(50), -- 작성자
+    content VARCHAR2(2000), -- 내용
+    pwd VARCHAR2(100), -- 비밀번호
+    ip VARCHAR2(30), -- ip
+    regdate Date -- 작성일
+);
+-- 샘플 데이터
+insert into visit values(
+    seq_visit_idx.nextVal,
+    '문채은',
+    '내가 일등했어요.',
+    '1234',
+    '192.1.1.1',
+    sysdate
+);
+
+alter table visit add filename varchar2(100);
+commit;
+
+
+insert into visit values(
+    seq_visit_idx.nextVal,
+    '엘풍',
+    '풀 페어리 최강',
+    '1234',
+    '192.2.2.2',
+    sysdate
+);
+
+
+commit;
+select * from visit;
+
+
+
+
+
+create sequence seq_cart_idx;
+
+create table cart(
+   c_idx number(3) primary key, --장바구니 일련번호
+   c_cnt number(3), --수량
+   idx number(3), -- 상품번호
+   m_idx number(3) --회원번호
+);
+
+alter table cart
+add constraint fk_cart foreign key( idx )
+references product( idx );
+
+--장바구니에 임시로 제품을 추가
+insert into cart values( seq_cart_idx.nextVal, 1, 4, 1 );
+insert into cart values( seq_cart_idx.nextVal, 1, 5, 1 );
+insert into cart values( seq_cart_idx.nextVal, 1, 2, 1 );
+commit;
+
+--장바구니 조회용 view
+create or replace view cart_view AS
+select p.idx, c_idx, p_num, p_name, p_price, p_saleprice, 
+   c_cnt, m_idx, p_image_s, c_cnt * p_saleprice amount
+from product p, cart c
+where p.idx = c.idx;
+
+select * from cart_view;
+
+
+
+
+
+
+
+
 
